@@ -6,10 +6,10 @@ const env = require("dotenv").config().parsed;
 const rapidApiKey = env.X_RAPIDAPI_KEY;
 const rapidApiHost = env.X_RAPIDAPI_Host;
 
-//MostPopularMovies
-export async function popMovies() {
+//Most Popular TV Show
+export async function popTVMovies() {
   const url =
-    "https://imdb8.p.rapidapi.com/title/get-most-popular-movies?homeCountry=US&purchaseCountry=US&currentCountry=US";
+    "https://imdb8.p.rapidapi.com/title/get-most-popular-tv-shows?homeCountry=US&purchaseCountry=US&currentCountry=US";
   const options = {
     method: "GET",
     headers: {
@@ -27,15 +27,14 @@ export async function popMovies() {
   }
 }
 
-export default async function MostPopularMovies() {
-  const popMoviesList = await popMovies();
-  const moviesList = popMoviesList?.slice(0, 12);
-
+export default async function MPTVShows() {
+  const popTVMoviesList = await popTVMovies();
+  const moviesList = popTVMoviesList?.slice(0, 12);
   return (
     <article className="px-5">
       <div className="flex justify-between p-4">
-        <h1 className="font-semibold">MOST POPULAR MOVIES</h1>
-        <Link href="#" className="font-medium">
+        <h1 className="font-semibold">MOST POPULAR TV SHOWS</h1>
+        <Link href="#" className="font-medium text-sm">
           VIEW ALL
         </Link>
       </div>
