@@ -9,30 +9,10 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import MovieName from "../../MovieName/MovieName";
-const env = require("dotenv").config().parsed;
-const rapidApiKey = env.X_RAPIDAPI_KEY;
-const rapidApiHost = env.X_RAPIDAPI_Host;
-
-export async function moviesTopRated() {
-  const url = "https://imdb8.p.rapidapi.com/title/get-top-rated-movies";
-  const options = {
-    method: "GET",
-    headers: {
-      "X-RapidAPI-Key": rapidApiKey,
-      "X-RapidAPI-Host": rapidApiHost,
-    },
-  };
-  try {
-    const response = await fetch(url, options);
-    const result = await response.json();
-    return result;
-  } catch (error) {
-    console.error(error);
-  }
-}
+import { moviesTopRatedApi } from "@/api";
 
 export default async function TopRatedMovies() {
-  const moviesTopRatedList = await moviesTopRated();
+  const moviesTopRatedList = await moviesTopRatedApi();
   const fisrtTenMovie = moviesTopRatedList.slice(0, 10);
 
   // console.log(fisrtTenMovie);

@@ -1,42 +1,17 @@
 import Image from "next/image";
 import Link from "next/link";
+import { DiGithubBadge } from "react-icons/di";
+import { BsInstagram, BsFacebook, BsGithub } from "react-icons/bs";
 
 export default function Footer() {
   return (
-    <footer className="flex flex-row justify-between p-7 shadow-md dark:shadow-slate-900 shadow-slate-100 text-gray-600">
+    <footer className="flex flex-row justify-between py-5 px-20 shadow-md dark:shadow-slate-900 shadow-slate-100 text-gray-600">
       <div className="flex gap-3 opacity-80 cursor-pointer">
-        <Image
-          priority
-          src="/icons/github.svg"
-          alt="Logo"
-          width={25}
-          height={25}
-          className="dark:hidden"
-        />
-        <Image
-          priority
-          src="/icons/github-dark.svg"
-          alt="Logo"
-          width={25}
-          height={25}
-          className="hidden dark:block"
-        />
-        <Image
-          priority
-          src="/icons/instagram.svg"
-          alt="Logo"
-          width={25}
-          height={25}
-          className="dark:hidden"
-        />
-        <Image
-          priority
-          src="/icons/instagram-dark.svg"
-          alt="Logo"
-          width={25}
-          height={25}
-          className="hidden dark:block"
-        />
+        <div className="flex items-center justify-between gap-5">
+          <BsGithub className="text-black dark:text-white w-[27px] h-[27px]" />
+          <BsInstagram className="text-black dark:text-white w-[27px] h-[27px]" />
+          <BsFacebook className="text-black dark:text-white w-[27px] h-[27px]" />
+        </div>
       </div>
       <p> ©2023 All rights reserved. Created by An Huong</p>
       <div className="flex gap-5 cursor-pointer">

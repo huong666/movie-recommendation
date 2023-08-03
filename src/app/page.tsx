@@ -9,7 +9,7 @@ export default function Home() {
   // // const data = await getData();
 
   return (
-    <main className="min-h-screen p-24">
+    <main className="min-h-screen py-20 px-20 pt-28">
       <section className="flex flex-col justify-center items-center gap-5">
         @ts-expect-error Async Server Component
         {/* <MPMovies /> */}

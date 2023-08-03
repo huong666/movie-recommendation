@@ -1,34 +1,10 @@
 import Link from "next/link";
 import { Slide, SlideChild } from "@/components/ReactSlice";
 import Movie from "@/components/Movie";
+import { popTVMoviesApi } from "@/api";
 
-const env = require("dotenv").config().parsed;
-const rapidApiKey = env.X_RAPIDAPI_KEY;
-const rapidApiHost = env.X_RAPIDAPI_Host;
-
-//Most Popular TV Show
-export async function popTVMovies() {
-  const url =
-    "https://imdb8.p.rapidapi.com/title/get-most-popular-tv-shows?homeCountry=US&purchaseCountry=US&currentCountry=US";
-  const options = {
-    method: "GET",
-    headers: {
-      "X-RapidAPI-Key": rapidApiKey,
-      "X-RapidAPI-Host": rapidApiHost,
-    },
-  };
-
-  try {
-    const response = await fetch(url, options);
-    const result = await response.json();
-    return result;
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-export default async function MPTVShows() {
-  const popTVMoviesList = await popTVMovies();
+export default async function MPTVShowsApi() {
+  const popTVMoviesList = await popTVMoviesApi();
   const moviesList = popTVMoviesList?.slice(0, 12);
   return (
     <article className="px-5">

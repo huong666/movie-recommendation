@@ -25,7 +25,7 @@ export default function Header() {
 
   useEffect(() => {
     window.addEventListener("scroll", handleNavigation);
-    if (y > 20) {
+    if (y > 10) {
       setstickyMenu(true);
     } else {
       setstickyMenu(false);
@@ -51,10 +51,10 @@ export default function Header() {
 
   return (
     <header
-      className={` ${
+      className={`fixed left-0 right-0 mx-auto flex py-5 px-20 transition-all duration-300 ease-linear ${
         stickyMenu &&
-        "fixed left-0 right-0 shadow-md shadow-slate-100 dark:shadow-slate-900 py-7"
-      } flex py-5 px-10`}
+        "shadow-md shadow-slate-100 dark:shadow-slate-900 z-10 bg-white dark:bg-slate-900"
+      }`}
     >
       <div className="w-1/3">
         <Image
@@ -76,12 +76,12 @@ export default function Header() {
       </div>
       <div className="flex justify-between w-2/3">
         <nav className="" id="Choose Type List">
-          <ul className="flex gap-10 font-medium">
+          {/* <ul className="flex gap-10 font-medium">
             <li className="cursor-pointer">Movies Awards</li>
             <li className="cursor-pointer">Most Popular Movies</li>
             <li className="cursor-pointer">Most Popular TV Shows</li>
             <li className="cursor-pointer">Coming Soon Movies</li>
-          </ul>
+          </ul> */}
         </nav>
         <div className="flex items-center">
           <Switch
