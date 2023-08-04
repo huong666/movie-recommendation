@@ -4,6 +4,8 @@ import { popMoviesApi } from "./MostPopularMoviesApi";
 import { popTVMoviesApi } from "./MostPopularTVShowsApi";
 import { findMovieApi } from "./FindMovieApi";
 import { moviesComingSoonApi } from "./ComingSoonMoviesApi";
+import { MovieOverviewDetailApi } from "./MovieOverviewDetailApi";
+import { ActorBioApi } from "./ActorBioApi";
 
 export {
   moviesTopRatedApi,
@@ -12,4 +14,6 @@ export {
   popTVMoviesApi,
   findMovieApi,
   moviesComingSoonApi,
+  MovieOverviewDetailApi,
+  ActorBioApi,
 };

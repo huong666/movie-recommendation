@@ -1,9 +1,4 @@
-import {
-  ComingSoonMovies,
-  TopRatedMovies,
-  MPMovies,
-  MPTVShows,
-} from "@/components/Home";
+import { ComingSoonMovies, TopRatedMovies, MPTVShows } from "@/components/Home";
 
 export default function Home() {
   // // const data = await getData();
@@ -22,8 +17,8 @@ export default function Home() {
           {/* <TopRatedMovies /> */}
         </div>
         <div className="col-span-1">
-          @ts-expect-error Async Server Component
-          {/* <ComingSoonMovies /> */}
+          {/* @ts-expect-error Async Server Component */}
+          <ComingSoonMovies />
         </div>
       </section>
     </main>

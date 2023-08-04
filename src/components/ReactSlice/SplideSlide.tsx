@@ -5,8 +5,10 @@ import "@splidejs/react-splide/css";
 
 export default function SlideChild({
   children,
+  className,
 }: {
   children: React.ReactNode;
+  className: string;
 }) {
-  return <SplideSlide>{children}</SplideSlide>;
+  return <SplideSlide className={className}>{children}</SplideSlide>;
 }

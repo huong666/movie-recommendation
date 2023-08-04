@@ -27,7 +27,7 @@ export default async function MostPopularMoviesApi() {
         >
           {moviesList.map((item: any, index: number) => {
             return (
-              <SlideChild key={index}>
+              <SlideChild className="" key={index}>
                 {/* @ts-expect-error Async Server Component */}
                 <Movie idMovieList={item} />
               </SlideChild>

@@ -1,1 +1,5 @@
-export { default } from "./Info";
+import { ComingSoonMovies } from "@/components/Home";
+
+export default function Info() {
+  return <></>;
+}
