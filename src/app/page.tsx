@@ -11,13 +11,11 @@ export default function Home() {
   return (
     <main className="min-h-screen py-20 px-20 pt-28">
       <section className="flex flex-col justify-center items-center gap-5">
-        <MPMovies />
-        <MPTVShows />
+        {/* <MPMovies /> */}
+        {/* <MPTVShows /> */}
       </section>
       <section className="grid grid-cols-2 gap-5">
-        <div className="col-span-1 ">
-          <TopRatedMovies />
-        </div>
+        <div className="col-span-1 ">{/* <TopRatedMovies /> */}</div>
         <div className="col-span-1">
           <ComingSoonMovies />
         </div>

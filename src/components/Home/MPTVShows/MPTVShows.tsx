@@ -26,8 +26,7 @@ export default async function MPTVShowsApi() {
         >
           {moviesList.map((item: any, index: number) => {
             return (
-              <SlideChild key={index}>
-                {/* @ts-expect-error Async Server Component */}
+              <SlideChild className="" key={index}>
                 <Movie idMovieList={item} />
               </SlideChild>
             );

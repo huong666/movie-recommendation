@@ -24,7 +24,6 @@ export default async function ComingSoonMoviesApi() {
               return (
                 <TableRow key={item.id}>
                   <TableCell className="">
-                    {/* @ts-expect-error Async Server Component */}
                     <MovieName id={id} />
                   </TableCell>
                   <TableCell className="text-right font-semibold">

@@ -12,7 +12,6 @@ export default function Slide({
 }) {
   return (
     <>
-      {/* @ts-expect-error Async Server Component */}
       <Splide options={options}>{children}</Splide>
     </>
   );
