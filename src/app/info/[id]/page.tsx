@@ -164,7 +164,6 @@ export default async function OverviewMovie({
                     {actor.map((item: any, index: number) => {
                       return (
                         <SlideChild className="" key={index}>
-                          {/* @ts-expect-error Async Server Component */}
                           <ActorImage
                             actorId={item.id.slice(6, item.id.length - 1)}
                           />
