@@ -1,3 +1,5 @@
+import { redis } from "@/lib/redis";
+
 const env = require("dotenv").config().parsed;
 const rapidApiKey = env.X_RAPIDAPI_KEY;
 const rapidApiHost = env.X_RAPIDAPI_Host;
@@ -14,8 +16,12 @@ export async function ActorBioApi(idActor: string) {
   };
 
   try {
-    const response = await fetch(url, options);
-    const result = await response.json();
+    //  console.log("not hit");
+    const hello_world = await redis.set("hello", "world");
+    console.log("hello_world", hello_world);
+    const data = await fetch(url, options);
+
+    const result = data.json();
     return result;
   } catch (error) {
     console.error(error);

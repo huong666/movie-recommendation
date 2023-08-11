@@ -1,11 +1,33 @@
 import Link from "next/link";
 import { Slide, SlideChild } from "@/components/ReactSlice";
 import Movie from "@/components/Movie";
-import { popMoviesApi } from "@/api";
+// import { popMoviesApi } from "@/api";
+import { useEffect, useState } from "react";
 
-export default async function MostPopularMoviesApi() {
-  const popMoviesList = await popMoviesApi();
-  const moviesList = popMoviesList?.slice(0, 12);
+export default function MostPopularMovies({ moviesList }: { moviesList: any }) {
+  // const popMoviesList = await popMoviesApi();
+  // console.log(popMoviesList);
+  // const moviesList = popMoviesList?.slice(0, 12);
+
+  // export default function MostPopularMovies() {
+  //   const [moviesList, setMoviesList] = useState([]);
+
+  //   const popularMoviesApi = async () => {
+  //     try {
+  //       const res = await popMoviesApi();
+  //       const response = res.slice(0, 12);
+  //       // console.log("res", response);
+  //       setMoviesList(response);
+  //     } catch (e) {
+  //       console.log(e);
+  //     }
+  //   };
+
+  //   useEffect(() => {
+  //     popularMoviesApi();
+  //   }, []);
+
+  //   console.log("api popular movie", moviesList);
 
   return (
     <article className="px-5">
@@ -26,9 +48,10 @@ export default async function MostPopularMoviesApi() {
           aria-label="..."
         >
           {moviesList.map((item: any, index: number) => {
+            // console.log(item);
             return (
               <SlideChild className="" key={index}>
-                <Movie idMovieList={item} />
+                <Movie data={item} />
               </SlideChild>
             );
           })}

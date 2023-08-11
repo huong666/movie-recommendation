@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default async function ActorImage({ actorId }: { actorId: string }) {
   const actorBio = await ActorBioApi(actorId);
-  console.log(actorBio);
+
   return (
     <>
       <Image

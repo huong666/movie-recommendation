@@ -1,9 +1,8 @@
 import { findMovieApi, MovieOverviewDetailApi } from "@/api";
-import ActorImage from "@/components/ActorImage/ActorImage";
+import ActorImage from "@/components/ActorImage";
 import { Slide, SlideChild } from "@/components/ReactSlice";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import { MdOutlineArrowForwardIos } from "react-icons/md";
 
 export default async function OverviewMovie({
@@ -13,12 +12,13 @@ export default async function OverviewMovie({
 }) {
   const overviewMovie = await MovieOverviewDetailApi(params.id);
   const findMovie = await findMovieApi(params.id);
-
+  // console.log("overviewMovie", overviewMovie);
+  // console.log("findMovie", findMovie);
   const actor = findMovie.results[0].principals;
 
   const audienceRated = overviewMovie.ratings.canRate;
   const audienceScore = overviewMovie.ratings.rating * 10;
-  const audienceRatingcount = overviewMovie.ratings.ratingCount;
+  const audienceRatingCount = overviewMovie.ratings.ratingCount;
 
   return (
     <div>
@@ -71,8 +71,8 @@ export default async function OverviewMovie({
                   </p>
                   <p className="text-green-500 self-start">
                     {audienceRated
-                      ? audienceRatingcount >= 50
-                        ? "There are " + audienceRatingcount + " Ratings"
+                      ? audienceRatingCount >= 50
+                        ? "There are " + audienceRatingCount + " Ratings"
                         : "Fewer than 50 Ratings"
                       : "No Review"}
                   </p>
@@ -165,9 +165,9 @@ export default async function OverviewMovie({
                     {actor.map((item: any, index: number) => {
                       return (
                         <SlideChild className="" key={index}>
-                          <ActorImage
+                          {/* <ActorImage
                             actorId={item.id.slice(6, item.id.length - 1)}
-                          />
+                          /> */}
                         </SlideChild>
                       );
                     })}
