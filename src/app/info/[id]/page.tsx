@@ -22,6 +22,7 @@ export default async function OverviewMovie({
 
   return (
     <div>
+      <title>MR - Movie Infomation</title>
       <div className="py-16 px-20 pt-28">
         {/* title */}
         <div className="flex items-center gap-2 text-xl font-medium">

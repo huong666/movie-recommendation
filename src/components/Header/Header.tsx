@@ -2,6 +2,7 @@
 
 import { Switch } from "@/components/ui/switch";
 import Image from "next/image";
+import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 
 export default function Header() {
@@ -51,7 +52,7 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed left-0 right-0 mx-auto flex py-5 px-20 transition-all duration-300 ease-linear ${
+      className={`fixed left-0 right-0 mx-auto flex justify-between items-center py-5 px-20 transition-all duration-300 ease-linear ${
         stickyMenu &&
         "shadow-md shadow-slate-100 dark:shadow-slate-900 z-10 bg-white dark:bg-slate-900"
       }`}
@@ -74,14 +75,21 @@ export default function Header() {
           className="hidden dark:block"
         />
       </div>
-      <div className="flex justify-between w-2/3">
+      <div className="flex justify-between w-1/2">
         <nav className="" id="Choose Type List">
-          {/* <ul className="flex gap-10 font-medium">
-            <li className="cursor-pointer">Movies Awards</li>
-            <li className="cursor-pointer">Most Popular Movies</li>
-            <li className="cursor-pointer">Most Popular TV Shows</li>
-            <li className="cursor-pointer">Coming Soon Movies</li>
-          </ul> */}
+          <ul className="flex gap-10 font-medium">
+            <li className="cursor-pointer">
+              <Link href="/">Home</Link>
+            </li>
+            <li className="cursor-pointer">
+              <Link href="/actor">News</Link>
+            </li>
+            <li className="cursor-pointer">
+              <Link href="/info">Info Movie</Link>
+            </li>
+            {/* <li className="cursor-pointer">Most Popular TV Shows</li>
+            <li className="cursor-pointer">Coming Soon Movies</li> */}
+          </ul>
         </nav>
         <div className="flex items-center">
           <Switch

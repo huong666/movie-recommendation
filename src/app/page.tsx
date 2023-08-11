@@ -16,9 +16,7 @@ export default function Home() {
       </section>
       <section className="grid grid-cols-2 gap-5">
         <div className="col-span-1 ">{/* <TopRatedMovies /> */}</div>
-        <div className="col-span-1">
-          <ComingSoonMovies />
-        </div>
+        <div className="col-span-1">{/* <ComingSoonMovies /> */}</div>
       </section>
     </main>
   );
