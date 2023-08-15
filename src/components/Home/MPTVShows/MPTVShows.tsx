@@ -1,13 +1,13 @@
 import Link from "next/link";
 import { Slide, SlideChild } from "@/components/ReactSlice";
 import Movie from "@/components/Movie";
-import { popTVMoviesApi } from "@/api";
+import { GetMostPopTvShowApi } from "@/api/Movie";
 
 export default async function MPTVShowsApi() {
-  const popTVMoviesList = await popTVMoviesApi();
+  const popTVMoviesList = await GetMostPopTvShowApi();
   const moviesList = popTVMoviesList?.slice(0, 12);
   return (
-    <article className="px-5">
+    <section className="px-5">
       <div className="flex justify-between p-4">
         <h1 className="font-semibold">MOST POPULAR TV SHOWS</h1>
         <Link href="#" className="font-medium text-sm">
@@ -27,12 +27,12 @@ export default async function MPTVShowsApi() {
           {moviesList.map((item: any, index: number) => {
             return (
               <SlideChild className="" key={index}>
-                <Movie idMovieList={item} />
+                {/* <Movie idMovieList={item} /> */}
               </SlideChild>
             );
           })}
         </Slide>
       </div>
-    </article>
+    </section>
   );
 }

@@ -1,15 +1,15 @@
-import { moviesComingSoonApi } from "@/api";
+import { GetComingSoonMoviesApi } from "@/api/Movie";
 import MovieName from "@/components/MovieName";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import Link from "next/link";
 
 export default async function ComingSoonMoviesApi() {
-  const comingSoonMoviesList = await moviesComingSoonApi();
+  const comingSoonMoviesList = await GetComingSoonMoviesApi();
   const fisrtTenMovie = comingSoonMoviesList.slice(0, 10);
   // console.log(fisrtTenMovie);
 
   return (
-    <article className="">
+    <section className="">
       <div className="flex justify-between p-4">
         <h1 className="font-semibold">COMING SOON MOVIES</h1>
         <Link href="#" className="font-medium text-sm">
@@ -24,7 +24,7 @@ export default async function ComingSoonMoviesApi() {
               return (
                 <TableRow key={item.id}>
                   <TableCell className="">
-                    <MovieName id={id} />
+                    {/* <MovieName id={id} /> */}
                   </TableCell>
                   <TableCell className="text-right font-semibold">
                     {item.releaseDate}
@@ -35,6 +35,6 @@ export default async function ComingSoonMoviesApi() {
           </TableBody>
         </Table>
       </div>
-    </article>
+    </section>
   );
 }

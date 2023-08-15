@@ -9,16 +9,16 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import MovieName from "../../MovieName/MovieName";
-import { moviesTopRatedApi } from "@/api";
+import { GetTopRatedMoviesApi } from "@/api/Movie";
 
 export default async function TopRatedMovies() {
-  const moviesTopRatedList = await moviesTopRatedApi();
+  const moviesTopRatedList = await GetTopRatedMoviesApi();
   const fisrtTenMovie = moviesTopRatedList.slice(0, 10);
 
   // console.log(fisrtTenMovie);
 
   return (
-    <article className="">
+    <section className="">
       <div className="flex justify-between p-4">
         <h1 className="font-semibold">TOP RATED MOVIES</h1>
         <Link href="#" className="font-medium text-sm">
@@ -33,7 +33,7 @@ export default async function TopRatedMovies() {
               return (
                 <TableRow key={item.id}>
                   <TableCell className="">
-                    <MovieName id={id} />
+                    {/* <MovieName id={id} /> */}
                   </TableCell>
                   <TableCell className="text-right font-semibold">
                     {item.chartRating * 10}%
@@ -44,6 +44,6 @@ export default async function TopRatedMovies() {
           </TableBody>
         </Table>
       </div>
-    </article>
+    </section>
   );
 }

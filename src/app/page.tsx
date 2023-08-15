@@ -1,3 +1,4 @@
+import { GetPopMoviesApi } from "@/api/Movie";
 import {
   ComingSoonMovies,
   TopRatedMovies,
@@ -5,18 +6,21 @@ import {
   MPMovies,
 } from "@/components/Home";
 
-export default async function Home() {
-  // const popMoviesList = await popMoviesApi();
-  // const popMovie = popMoviesList;
-  // // const ratingApi = await ratingMoviesApi(popMovie);
+const data = [
+  "/title/tt15398776/",
+  "/title/tt1517268/",
+  "/title/tt6791350/",
+  "/title/tt9224104/",
+  "/title/tt8589698/",
+];
 
-  // console.log("ratingApi", popMovie);
-  // console.log("popMoviesList", popMoviesList);
+export default async function Home() {
+  const mostPopMoviesList = await GetPopMoviesApi();
 
   return (
     <main className="min-h-screen py-20 px-20 pt-28">
       <section className="flex flex-col justify-center items-center gap-5 mb-10">
-        {/* <MPMovies moviesList={popMoviesList.slice(0, 12)} /> */}
+        <MPMovies moviesList={mostPopMoviesList.slice(0, 12)} />
         {/* <MPTVShows /> */}
       </section>
       <section className="grid grid-cols-2 gap-5">

@@ -1,36 +1,25 @@
 import Link from "next/link";
 import { Slide, SlideChild } from "@/components/ReactSlice";
-import Movie from "@/components/Movie";
-// import { popMoviesApi } from "@/api";
-import { useEffect, useState } from "react";
+import { GetOverviewDetailsApi } from "@/api/Movie";
+import MovieCard from "@/components/MovieCard";
 
 export default function MostPopularMovies({ moviesList }: { moviesList: any }) {
-  // const popMoviesList = await popMoviesApi();
-  // console.log(popMoviesList);
-  // const moviesList = popMoviesList?.slice(0, 12);
+  async function handleMovie(params: any) {
+    "use server";
 
-  // export default function MostPopularMovies() {
-  //   const [moviesList, setMoviesList] = useState([]);
+    const id = params.slice(7, params.length - 1);
 
-  //   const popularMoviesApi = async () => {
-  //     try {
-  //       const res = await popMoviesApi();
-  //       const response = res.slice(0, 12);
-  //       // console.log("res", response);
-  //       setMoviesList(response);
-  //     } catch (e) {
-  //       console.log(e);
-  //     }
-  //   };
-
-  //   useEffect(() => {
-  //     popularMoviesApi();
-  //   }, []);
-
-  //   console.log("api popular movie", moviesList);
+    try {
+      const res = await GetOverviewDetailsApi(id);
+      return res;
+    } catch (error) {
+      console.log("error", error);
+      return undefined;
+    }
+  }
 
   return (
-    <article className="px-5">
+    <section className="px-5 mx-auto">
       <div className="flex justify-between p-4">
         <h1 className="font-semibold">MOST POPULAR MOVIES</h1>
         <Link href="#" className="font-medium">
@@ -44,19 +33,20 @@ export default function MostPopularMovies({ moviesList }: { moviesList: any }) {
             width: "100%",
             gap: "1rem",
             perPage: 6,
+            pagination: false,
           }}
           aria-label="..."
         >
           {moviesList.map((item: any, index: number) => {
-            // console.log(item);
+            // const percentRating = Math.round((rating.rating / 10) * 100);
             return (
               <SlideChild className="" key={index}>
-                <Movie data={item} />
+                <MovieCard item={item} handleMovie={handleMovie} />
               </SlideChild>
             );
           })}
         </Slide>
       </div>
-    </article>
+    </section>
   );
 }

@@ -52,7 +52,7 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed left-0 right-0 mx-auto flex justify-between items-center py-5 px-20 transition-all duration-300 ease-linear ${
+      className={`fixed py-5 px-60 left-0 right-0 mx-auto flex justify-between items-center transition-all duration-300 ease-linear ${
         stickyMenu &&
         "shadow-md shadow-slate-100 dark:shadow-slate-900 z-10 bg-white dark:bg-slate-900"
       }`}
