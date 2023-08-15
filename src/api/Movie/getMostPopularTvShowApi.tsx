@@ -3,7 +3,7 @@ const rapidApiKey = env.X_RAPIDAPI_KEY;
 const rapidApiHost = env.X_RAPIDAPI_Host;
 
 //Most Popular TV Show
-export async function popTVMoviesApi() {
+export async function GetMostPopTvShowApi() {
   const url =
     "https://imdb8.p.rapidapi.com/title/get-most-popular-tv-shows?homeCountry=US&purchaseCountry=US&currentCountry=US";
   const options = {

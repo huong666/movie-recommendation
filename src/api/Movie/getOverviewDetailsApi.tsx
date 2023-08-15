@@ -2,11 +2,11 @@ const env = require("dotenv").config().parsed;
 const rapidApiKey = env.X_RAPIDAPI_KEY;
 const rapidApiHost = env.X_RAPIDAPI_Host;
 
-//Rating
-export async function ratingMoviesApi(idMovie: string) {
+export async function GetOverviewDetailsApi(id: string) {
   const url =
-    "https://imdb8.p.rapidapi.com/title/get-ratings?tconst=" + idMovie;
-  // + idMovie;
+    "https://imdb8.p.rapidapi.com/title/get-overview-details?tconst=" +
+    id +
+    "&currentCountry=US";
   const options = {
     method: "GET",
     headers: {
@@ -18,7 +18,6 @@ export async function ratingMoviesApi(idMovie: string) {
   try {
     const response = await fetch(url, options);
     const result = await response.json();
-    // console.log(result);
     return result;
   } catch (error) {
     console.error(error);

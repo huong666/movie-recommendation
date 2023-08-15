@@ -5,7 +5,7 @@ const rapidApiKey = env.X_RAPIDAPI_KEY;
 const rapidApiHost = env.X_RAPIDAPI_Host;
 
 //ActorBio api
-export async function ActorBioApi(idActor: string) {
+export async function GetActorBioApi(idActor: string) {
   const url = "https://imdb8.p.rapidapi.com/actors/get-bio?nconst=" + idActor;
   const options = {
     method: "GET",

@@ -2,11 +2,9 @@ const env = require("dotenv").config().parsed;
 const rapidApiKey = env.X_RAPIDAPI_KEY;
 const rapidApiHost = env.X_RAPIDAPI_Host;
 
-export async function MovieOverviewDetailApi(id: string) {
-  const url =
-    "https://imdb8.p.rapidapi.com/title/get-overview-details?tconst=" +
-    id +
-    "&currentCountry=US";
+// get api movies
+export async function FindMovieApi(idMovie: string) {
+  const url = "https://imdb8.p.rapidapi.com/title/find?q=" + idMovie;
   const options = {
     method: "GET",
     headers: {

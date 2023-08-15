@@ -2,10 +2,10 @@ const env = require("dotenv").config().parsed;
 const rapidApiKey = env.X_RAPIDAPI_KEY;
 const rapidApiHost = env.X_RAPIDAPI_Host;
 
-//MostPopularMovies
-export async function popMoviesApi() {
+//Coming Soon Movies
+export async function GetComingSoonMoviesApi() {
   const url =
-    "https://imdb8.p.rapidapi.com/title/get-most-popular-movies?homeCountry=US&purchaseCountry=US&currentCountry=US";
+    "https://imdb8.p.rapidapi.com/title/get-coming-soon-movies?homeCountry=US&purchaseCountry=US&currentCountry=US";
   const options = {
     method: "GET",
     headers: {
