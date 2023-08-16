@@ -1,25 +1,9 @@
 import Link from "next/link";
 import { Slide, SlideChild } from "@/components/ReactSlice";
-import { GetOverviewDetailsApi } from "@/api/Movie";
 import MovieCard from "@/components/MovieCard";
-import { getInfoMovie } from "@/api/NewApi/getInfoMovie";
+import { handleMovie } from "@/lib/serverFun";
 
 export default function MostPopularMovies({ moviesList }: { moviesList: any }) {
-  async function handleMovie(params: any) {
-    "use server";
-
-    const id = params.slice(7, params.length - 1);
-
-    try {
-      const res = await getInfoMovie(id);
-      // console.log("fetch data o MPMovie", res);
-      return res;
-    } catch (error) {
-      console.log("error", error);
-      return undefined;
-    }
-  }
-
   return (
     <section className="w-full">
       <div className="flex justify-between p-4">

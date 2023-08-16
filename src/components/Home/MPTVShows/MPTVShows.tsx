@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { Slide, SlideChild } from "@/components/ReactSlice";
 import { GetMostPopTvShowApi } from "@/api/Movie";
+import MovieCard from "@/components/MovieCard";
+import { handleMovie } from "@/lib/serverFun";
 
 export default async function MPTVShowsApi({
   moviesList,
@@ -28,7 +30,7 @@ export default async function MPTVShowsApi({
           {moviesList.map((item: any, index: number) => {
             return (
               <SlideChild className="" key={index}>
-                {/* <Movie idMovieList={item} /> */}
+                <MovieCard item={item} handleMovie={handleMovie} />
               </SlideChild>
             );
           })}
