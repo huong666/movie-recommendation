@@ -1,5 +1,4 @@
 import { getInfoMovie } from "@/api/NewApi/getInfoMovie";
-import ActorImage from "@/components/ActorImage";
 import { Slide, SlideChild } from "@/components/ReactSlice";
 import Image from "next/image";
 import Link from "next/link";
@@ -13,7 +12,7 @@ export default async function infoMovie({
   const infoMovie = await getInfoMovie(params.id);
   // const actor = findMovie.results[0].principals;
 
-  console.log("movie Data", infoMovie);
+  // console.log("movie Data", infoMovie);
 
   const releaseDate =
     infoMovie.releaseDetailed.day +
@@ -96,7 +95,7 @@ export default async function infoMovie({
         <section className="px-10 py-5">
           <div className="">
             <div className="flex flex-col gap-3 bg-slate-100 dark:bg-gray-900 rounded-lg p-8">
-              <h1 className="text-xl font-medium mb-2 ">MOVIE INFO</h1>
+              <h1 className="text-xl font-medium mb-2 ">WHAT TO KNOW</h1>
               <p className="text-justify mb-5">{infoMovie.plot}</p>
               {/* <button className="text-blue-400 py-3 self-start">
                 Show more

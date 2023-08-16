@@ -1,6 +1,8 @@
 "use server"
 
 import { getInfoMovie } from "@/api/NewApi/getInfoMovie";
+import { getMoviesSearchApi } from "@/api/NewApi/getMovieSearchApi";
+import { redirect } from "next/navigation";
 
 
 export async function handleMovie(params: any) {
@@ -14,5 +16,16 @@ export async function handleMovie(params: any) {
     } catch (error) {
       console.log("error", error);
       return undefined;
+    }
+  }
+
+
+  export async function handleSearchMovies(params: string) {
+    try {
+      const res = await getMoviesSearchApi(params)
+      return res;
+    } catch (error) {
+      console.log(error)
+      return undefined
     }
   }

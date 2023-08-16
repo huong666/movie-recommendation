@@ -1,11 +1,11 @@
-export async function getMoviesSearchApi() {
-  const url = "http://127.0.0.1:3000/search?query=meat";
+export async function getMoviesSearchApi(string: string) {
+  const url = "http://127.0.0.1:3000/search?query=" + string;
 
   try {
     const response = await fetch(url);
     const result = await response.json();
-    console.log(result);
-    return;
+    // console.log(result);
+    return result;
   } catch (error) {
     console.log(error);
     return undefined;

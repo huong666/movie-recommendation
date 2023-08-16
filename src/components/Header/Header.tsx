@@ -1,15 +1,18 @@
 "use client";
 
 import { Switch } from "@/components/ui/switch";
+import { handleSearchMovies } from "@/lib/serverFun";
 import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
+import { AiOutlineSearch } from "react-icons/ai";
 
 export default function Header() {
   const [stickyMenu, setstickyMenu] = useState<boolean | null>(null);
   const [mode, setMode] = useState<string>("light");
   const [y, setY] = useState<number>(0);
   const [navigationOpen, setnavigationOpen] = useState<boolean>(false);
+  const [onSubmit, setOnSubmit] = useState<string>("");
 
   const onMode = () => {
     mode == "light" ? setMode("dark") : setMode("light");
@@ -57,7 +60,7 @@ export default function Header() {
         "shadow-md shadow-slate-100 dark:shadow-slate-900 z-10 bg-white dark:bg-slate-900"
       }`}
     >
-      <div className="w-1/3">
+      <div className="w-1/2 flex flex-row justify-between items-center">
         <Image
           priority
           src="/logo/logo-light.svg"
@@ -77,20 +80,43 @@ export default function Header() {
       </div>
       <div className="flex justify-between w-1/2">
         <nav className="" id="Choose Type List">
-          <ul className="flex gap-10 font-medium">
-            <li className="cursor-pointer">
+          <ul className="flex gap-10 font-medium h-full">
+            <li className="cursor-pointer my-auto">
               <Link href="/">Home</Link>
             </li>
-            <li className="cursor-pointer">
+            <li className="cursor-pointer my-auto">
               <Link href="/actor">News</Link>
             </li>
-            <li className="cursor-pointer">
+            <li className="cursor-pointer my-auto">
               <Link href="/info">Info Movie</Link>
             </li>
             {/* <li className="cursor-pointer">Most Popular TV Shows</li>
             <li className="cursor-pointer">Coming Soon Movies</li> */}
           </ul>
         </nav>
+        <div className="mr-10 relative flex items-center">
+          <form
+            onSubmit={() => {
+              handleSearchMovies(onSubmit);
+            }}
+            action={"/find"}
+          >
+            <input
+              type="text"
+              name="SearchMovie"
+              id="SearchBar"
+              className="px-3 py-1 border text-black border-black dark:border-white rounded-full"
+              placeholder="Search Movie..."
+              onChange={(e) => {
+                setOnSubmit(e.target.value);
+              }}
+            />
+            <button type="submit">
+              <AiOutlineSearch className="absolute z-20 right-2 top-1 w-6 h-6 dark:text-black cursor-pointer" />
+            </button>
+          </form>
+        </div>
+
         <div className="flex items-center">
           <Switch
             id="setDarkMode"
