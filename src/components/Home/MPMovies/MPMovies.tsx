@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Slide, SlideChild } from "@/components/ReactSlice";
-import MovieCard from "@/components/MovieCard";
+import MovieCard from "@/components/MoviesRender/MovieCard";
 import { handleMovie } from "@/lib/serverFun";
 
 export default function MostPopularMovies({ moviesList }: { moviesList: any }) {

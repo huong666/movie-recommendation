@@ -8,14 +8,16 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import MovieName from "../../MovieName/MovieName";
-import { GetTopRatedMoviesApi } from "@/api/Movie";
+import { handleMovie } from "@/lib/serverFun";
+import RowMovie from "@/components/MoviesRender/RowMovie";
 
-export default async function TopRatedMovies() {
-  const moviesTopRatedList = await GetTopRatedMoviesApi();
-  const fisrtTenMovie = moviesTopRatedList.slice(0, 10);
-
-  // console.log(fisrtTenMovie);
+export default async function TopRatedMovies({
+  moviesList,
+}: {
+  moviesList: any;
+}) {
+  // const moviesTopRatedList = await GetTopRatedMoviesApi();
+  // const fisrtTenMovie = moviesTopRatedList.slice(0, 10);
 
   return (
     <section className="">
@@ -28,17 +30,13 @@ export default async function TopRatedMovies() {
       <div>
         <Table>
           <TableBody>
-            {fisrtTenMovie.map((item: any) => {
-              const id = item.id.slice(7, item.id.length - 1);
+            {moviesList.map((item: any) => {
               return (
-                <TableRow key={item.id}>
-                  <TableCell className="">
-                    {/* <MovieName id={id} /> */}
-                  </TableCell>
-                  <TableCell className="text-right font-semibold">
-                    {item.chartRating * 10}%
-                  </TableCell>
-                </TableRow>
+                <RowMovie
+                  key={item.id}
+                  item={item.id}
+                  handleMovie={handleMovie}
+                />
               );
             })}
           </TableBody>

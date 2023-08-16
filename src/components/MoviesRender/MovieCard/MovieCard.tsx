@@ -29,8 +29,6 @@ export default function MovieCard({
     }, 18000000);
   }, []);
 
-  console.log("movideData", movieData);
-
   const id = (movieData as any)?.id;
   const rating = (movieData as any)?.rating.star * 10;
   const title = (movieData as any)?.title;

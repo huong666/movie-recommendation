@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Slide, SlideChild } from "@/components/ReactSlice";
 import { GetMostPopTvShowApi } from "@/api/Movie";
-import MovieCard from "@/components/MovieCard";
+import MovieCard from "@/components/MoviesRender/MovieCard";
 import { handleMovie } from "@/lib/serverFun";
 
 export default async function MPTVShowsApi({
@@ -24,6 +24,7 @@ export default async function MPTVShowsApi({
             width: "100%",
             gap: "1rem",
             perPage: 6,
+            pagination: false,
           }}
           aria-label="..."
         >

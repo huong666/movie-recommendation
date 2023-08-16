@@ -1,11 +1,15 @@
-import { GetComingSoonMoviesApi } from "@/api/Movie";
-import MovieName from "@/components/MovieName";
+import RowMovie from "@/components/MoviesRender/RowMovie";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
+import { handleMovie } from "@/lib/serverFun";
 import Link from "next/link";
 
-export default async function ComingSoonMoviesApi() {
-  const comingSoonMoviesList = await GetComingSoonMoviesApi();
-  const fisrtTenMovie = comingSoonMoviesList.slice(0, 10);
+export default async function ComingSoonMoviesApi({
+  moviesList,
+}: {
+  moviesList: any;
+}) {
+  // const comingSoonMoviesList = await GetComingSoonMoviesApi();
+  // const fisrtTenMovie = comingSoonMoviesList.slice(0, 10);
   // console.log(fisrtTenMovie);
 
   return (
@@ -19,17 +23,13 @@ export default async function ComingSoonMoviesApi() {
       <div>
         <Table>
           <TableBody>
-            {fisrtTenMovie.map((item: any) => {
-              const id = item.id.slice(7, item.id.length - 1);
+            {moviesList.map((item: any) => {
               return (
-                <TableRow key={item.id}>
-                  <TableCell className="">
-                    {/* <MovieName id={id} /> */}
-                  </TableCell>
-                  <TableCell className="text-right font-semibold">
-                    {item.releaseDate}
-                  </TableCell>
-                </TableRow>
+                <RowMovie
+                  key={item.id}
+                  item={item.id}
+                  handleMovie={handleMovie}
+                />
               );
             })}
           </TableBody>

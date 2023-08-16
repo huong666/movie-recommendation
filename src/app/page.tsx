@@ -1,4 +1,9 @@
-import { GetPopMoviesApi } from "@/api/Movie";
+import {
+  GetComingSoonMoviesApi,
+  GetMostPopTvShowApi,
+  GetPopMoviesApi,
+  GetTopRatedMoviesApi,
+} from "@/api/Movie";
 import { getMoviesSearchApi } from "@/api/NewApi/getMovieSearchApi";
 import {
   ComingSoonMovies,
@@ -38,21 +43,26 @@ const data = [
 ];
 
 export default async function Home() {
-  // const mostPopMoviesList = await GetPopMoviesApi();
+  const mostPopMoviesList = await GetPopMoviesApi();
+  const mostPopTvShowList = await GetMostPopTvShowApi();
+  const topMovieRatedList = await GetTopRatedMoviesApi();
+  const comingSoonMoviesList = await GetComingSoonMoviesApi();
   // const searchMovie = await getMoviesSearchApi();
-  // console.log(mostPopMoviesList);
+  // console.log("comingSoonMoviesList", comingSoonMoviesList);
 
   return (
     <main className="min-h-screen py-20 px-20 pt-28">
       <section className="flex flex-col justify-center items-center gap-5 mb-10">
-        <MPMovies moviesList={data} />
-        <MPTVShows moviesList={data} />
+        <MPMovies moviesList={mostPopMoviesList.slice(0, 12)} />
+        <MPTVShows moviesList={mostPopTvShowList.slice(0, 12)} />
       </section>
       <section className="grid grid-cols-2 gap-5">
         <div className="col-span-1 ">
-          <TopRatedMovies />
+          <TopRatedMovies moviesList={topMovieRatedList.slice(0, 10)} />
         </div>
-        <div className="col-span-1">{/* <ComingSoonMovies /> */}</div>
+        <div className="col-span-1">
+          <ComingSoonMovies moviesList={comingSoonMoviesList.slice(0, 10)} />
+        </div>
       </section>
     </main>
   );
