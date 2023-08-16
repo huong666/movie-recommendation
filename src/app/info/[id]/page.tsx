@@ -1,23 +1,26 @@
+import { getInfoMovie } from "@/api/NewApi/getInfoMovie";
 import ActorImage from "@/components/ActorImage";
 import { Slide, SlideChild } from "@/components/ReactSlice";
 import Image from "next/image";
 import Link from "next/link";
 import { MdOutlineArrowForwardIos } from "react-icons/md";
 
-export default async function OverviewMovie({
+export default async function infoMovie({
   params,
 }: {
   params: { id: string };
 }) {
-  // const overviewMovie = await MovieOverviewDetailApi(params.id);
-  // const findMovie = await findMovieApi(params.id);
-  // console.log("overviewMovie", overviewMovie);
-  // console.log("findMovie", findMovie);
+  const infoMovie = await getInfoMovie(params.id);
   // const actor = findMovie.results[0].principals;
 
-  // const audienceRated = overviewMovie.ratings.canRate;
-  // const audienceScore = overviewMovie.ratings.rating * 10;
-  // const audienceRatingCount = overviewMovie.ratings.ratingCount;
+  console.log("movie Data", infoMovie);
+
+  const releaseDate =
+    infoMovie.releaseDetailed.day +
+    "/" +
+    infoMovie.releaseDetailed.month +
+    "/" +
+    infoMovie.releaseDetailed.year;
 
   return (
     <div>
@@ -28,50 +31,59 @@ export default async function OverviewMovie({
           <Link href="/">Home</Link>
           {/* Arrow */}
           <MdOutlineArrowForwardIos />
-          {overviewMovie.title.title} {overviewMovie.title.year}
+          {infoMovie.title} {infoMovie.year}
         </div>
         {/* hero */}
         <section className="px-10 py-5">
           <div className="flex flex-row gap-5">
-            <div className="w-1/6 rounded-xl">
+            <div className="w-1/6 rounded-lg">
               <Image
-                src={overviewMovie.title.image.url}
+                src={infoMovie.image}
                 alt="Movie Image"
                 width={200}
                 height={333}
-                className="rounded-xl"
+                className="rounded-lg"
               />
             </div>
-            <div className="w-5/6 flex flex-col gap-10 justify-center items-center rounded-xl bg-slate-100 dark:bg-slate-900">
+            <div className="w-5/6 flex flex-col gap-10 justify-center items-center rounded-lg bg-slate-100 dark:bg-slate-900">
               <div className="text-center">
                 <h1 className="text-3xl font-semibold mb-3">
-                  {overviewMovie.title.title}
+                  {infoMovie.title}
                 </h1>
                 <p className="text-sm">
-                  {overviewMovie.title.year},{" "}
-                  {overviewMovie.genres.map((item: any, index: number) => {
-                    return <span key={index}>{item + ", "}</span>;
+                  {infoMovie.year},{" "}
+                  {infoMovie.genre.map((item: any, index: number) => {
+                    return (
+                      <span key={index}>
+                        {item}
+                        {index !== infoMovie.genre.length - 1 && ", "}
+                      </span>
+                    );
                   })}
-                  , {overviewMovie.title.runningTimeInMinutes + " Minutes"}
+                  , {infoMovie.runtimeSeconds / 60 + " Minutes"}
                 </p>
               </div>
               <div className="mx-auto flex justify-between items-center gap-10 w-full">
                 <div className="flex flex-col items-center w-1/2">
                   <p className="font-bold text-4xl self-end">--%</p>
                   <p className="text-sm font-medium self-end">TOMATOMETER</p>
-                  <p className="text-green-500 self-end">No Review</p>
+                  <p className="text-green-500 self-end text-sm">No Review</p>
                 </div>
                 <div className="flex flex-col items-center w-1/2">
                   <p className="font-bold text-4xl self-start">
-                    {audienceRated ? audienceScore + "%" : <span>--%</span>}
+                    {infoMovie.rating != undefined ? (
+                      infoMovie.rating.star * 10 + "%"
+                    ) : (
+                      <span>--%</span>
+                    )}
                   </p>
                   <p className="text-sm font-medium self-start">
                     AUDIENCE SCORE
                   </p>
-                  <p className="text-green-500 self-start">
-                    {audienceRated
-                      ? audienceRatingCount >= 50
-                        ? "There are " + audienceRatingCount + " Ratings"
+                  <p className="text-green-500 self-start text-sm">
+                    {infoMovie.rating
+                      ? infoMovie.rating.count >= 50
+                        ? "There are " + infoMovie.rating.count + " Ratings"
                         : "Fewer than 50 Ratings"
                       : "No Review"}
                   </p>
@@ -83,25 +95,47 @@ export default async function OverviewMovie({
         {/* movie info */}
         <section className="px-10 py-5">
           <div className="">
-            <div className="flex flex-col gap-3 bg-slate-100 dark:bg-gray-900 rounded-xl p-8">
-              <h1 className="text-xl font-medium mb-5 ">MOVIE INFO</h1>
-              <p className="text-justify mb-10">
-                {overviewMovie.plotSummary == undefined
-                  ? overviewMovie.plotOutline.text
-                  : overviewMovie.plotSummary.text}
-              </p>
+            <div className="flex flex-col gap-3 bg-slate-100 dark:bg-gray-900 rounded-lg p-8">
+              <h1 className="text-xl font-medium mb-2 ">MOVIE INFO</h1>
+              <p className="text-justify mb-5">{infoMovie.plot}</p>
               {/* <button className="text-blue-400 py-3 self-start">
                 Show more
               </button> */}
               {/* plotSummary */}
+              <div className="my-5">
+                <Slide
+                  options={{
+                    start: 1,
+                    fixedWidth: 250,
+                    height: 170,
+                    gap: "1rem",
+                    perPage: 4,
+                    pagination: false,
+                  }}
+                >
+                  {infoMovie.images.map((item: string, index: number) => {
+                    return (
+                      <SlideChild key={index}>
+                        <Image
+                          src={item}
+                          alt=""
+                          width={250}
+                          height={400}
+                          className="h-full rounded-md"
+                        />
+                      </SlideChild>
+                    );
+                  })}
+                </Slide>
+              </div>
               <div className="grid grid-cols-2">
                 <div className="flex flex-col gap-3">
                   <p>
                     <strong>Genres: </strong>
-                    {overviewMovie.genres.map((item: any, index: number) => {
+                    {infoMovie.genre.map((item: any, index: number) => {
                       return (
                         <span key={index}>
-                          {index == overviewMovie.genres.length - 1
+                          {index == infoMovie.genre.length - 1
                             ? item
                             : item + ", "}
                         </span>
@@ -110,46 +144,44 @@ export default async function OverviewMovie({
                   </p>
                   <p>
                     <strong>Type: </strong>
-                    {overviewMovie.title.titleType}
+                    {infoMovie.contentType}
                   </p>
                   <p>
                     <strong>Year: </strong>
-                    {overviewMovie.title.year}
+                    {infoMovie.year}
                   </p>
                   <p>
                     <strong>Release Date: </strong>
-                    {overviewMovie.releaseDate}
+                    {releaseDate}
                   </p>
                   <p>
-                    <strong>Author: </strong>
-                    {overviewMovie.plotSummary != undefined
-                      ? overviewMovie.plotSummary.author
-                      : overviewMovie.plotOutline.author}
+                    <strong>Directors: </strong>
+                    {infoMovie.directors[0]}
                   </p>
-                  <p>
+                  {/* <p>
                     <strong>Rank: </strong>
-                    {overviewMovie.ratings.otherRanks != undefined
+                  {infoMovie.ratings.otherRanks != undefined
                       ? "Rank " +
-                        overviewMovie.ratings.otherRanks[0].rank +
+                        infoMovie.ratings.otherRanks[0].rank +
                         " on " +
-                        overviewMovie.ratings.otherRanks[0].label
-                      : "This movie has no rank !"}
-                  </p>
+                        infoMovie.ratings.otherRanks[0].label
+                      : "This movie has no rank !"} 
+                  </p> */}
                   <p>
                     <strong>Run Time: </strong>
-                    {overviewMovie.title.runningTimeInMinutes}
+                    {infoMovie.runtimeSeconds / 60} Minutes
                   </p>
-                  {overviewMovie.title.titleType == "movie" ? (
+                  {infoMovie.contentType !== "TVSeries" ? (
                     ""
                   ) : (
                     <p>
                       <strong>Number of Episodes: </strong>
-                      {overviewMovie.title.numberOfEpisodes}
+                      {infoMovie.numberOfEpisodes}
                     </p>
                   )}
                 </div>
                 <div className="py-7">
-                  <Slide
+                  {/* <Slide
                     options={{
                       rewind: true,
                       width: "100%",
@@ -158,19 +190,21 @@ export default async function OverviewMovie({
                       pageMove: 2,
                       gap: "1rem",
                       pagination: false,
-                      arrows: actor.length > 4 ? true : false,
+                      // arrows: actor.length > 4 ? true : false, 
                     }}
-                  >
-                    {actor.map((item: any, index: number) => {
-                      return (
-                        <SlideChild className="" key={index}>
-                          {/* <ActorImage
-                            actorId={item.id.slice(6, item.id.length - 1)}
-                          /> */}
-                        </SlideChild>
-                      );
-                    })}
-                  </Slide>
+                  >*/}
+                  {
+                    // actor.map((item: any, index: number) => {
+                    //   return (
+                    //     <SlideChild className="" key={index}>
+                    //       {/* <ActorImage
+                    //         actorId={item.id.slice(6, item.id.length - 1)}
+                    //       /> */}
+                    //     </SlideChild>
+                    //   );
+                    // })
+                  }
+                  {/* </Slide> */}
                 </div>
               </div>
             </div>

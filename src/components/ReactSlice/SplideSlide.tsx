@@ -8,7 +8,7 @@ export default function SlideChild({
   className,
 }: {
   children: React.ReactNode;
-  className: string;
+  className?: string;
 }) {
   return <SplideSlide className={className}>{children}</SplideSlide>;
 }

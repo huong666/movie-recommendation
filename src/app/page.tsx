@@ -30,16 +30,6 @@ const data = [
   // "/title/tt21291992/",
   // "/title/tt4779682/",
   // "/title/tt4495098/",
-  // "/title/tt1695843/",
-  // "/title/tt15509244/",
-  // "/title/tt5090568/",
-  // "/title/tt21308888/",
-  // "/title/tt6879446/",
-  // "/title/tt14230388/",
-  // "/title/tt10640346/",
-  // "/title/tt13405778/",
-  // "/title/tt5971474/",
-  // "/title/tt0439572/",
 ];
 
 export default async function Home() {

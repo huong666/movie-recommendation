@@ -41,12 +41,12 @@ export default function MovieCard({
           src={img}
           alt="Movie img"
           width={180}
-          height={260}
-          className="rounded-md h-[260px]"
+          height={280}
+          className="rounded-md h-[280px] w-full mx-auto"
         />
-        <div className="py-3">
-          <p>{rating}</p>
-          <p>{title}</p>
+        <div className="py-3 mx-auto">
+          <p className="font-semibold">{rating}%</p>
+          <p className="text-sm">{title}</p>
         </div>
       </Link>
     </>

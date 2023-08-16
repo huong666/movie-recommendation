@@ -36,6 +36,7 @@ export default async function TopRatedMovies({
                   key={item.id}
                   item={item.id}
                   handleMovie={handleMovie}
+                  type="rating"
                 />
               );
             })}

@@ -4,12 +4,16 @@ import { TableCell, TableRow } from "@/components/ui/table";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
+type TypeMv = "rating" | "releasedate";
+
 export default function CellMovie({
   item,
   handleMovie,
+  type,
 }: {
   item: string;
   handleMovie: (item: string) => void;
+  type?: TypeMv;
 }) {
   const [movieData, setMovieData] = useState();
 
@@ -37,6 +41,7 @@ export default function CellMovie({
     (movieData as any)?.releaseDetailed.month +
     "/" +
     (movieData as any)?.year;
+  const rating = (movieData as any)?.rating.star * 10 + "%";
 
   // console.log("releaseDate", releaseDate);
   if (movieData == undefined)
@@ -48,10 +53,12 @@ export default function CellMovie({
     );
   return (
     <TableRow>
-      <TableCell className="">
+      <TableCell>
         <Link href={`/info/${id}`}>{title}</Link>
       </TableCell>
-      <TableCell className="text-right font-semibold">{releaseDate}</TableCell>
+      <TableCell className="text-right font-semibold">
+        {type == "rating" ? rating : releaseDate}
+      </TableCell>
     </TableRow>
   );
 }

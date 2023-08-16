@@ -17,7 +17,7 @@ export default function MostPopularMovies({ moviesList }: { moviesList: any }) {
           options={{
             start: 1,
             width: "100%",
-            gap: "1rem",
+            gap: "2rem",
             perPage: 6,
             pagination: false,
           }}

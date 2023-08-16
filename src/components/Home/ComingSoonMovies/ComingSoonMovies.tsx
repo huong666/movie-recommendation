@@ -29,6 +29,7 @@ export default async function ComingSoonMoviesApi({
                   key={item.id}
                   item={item.id}
                   handleMovie={handleMovie}
+                  type="releasedate"
                 />
               );
             })}

@@ -22,7 +22,7 @@ export default async function MPTVShowsApi({
           options={{
             start: 1,
             width: "100%",
-            gap: "1rem",
+            gap: "2rem",
             perPage: 6,
             pagination: false,
           }}
