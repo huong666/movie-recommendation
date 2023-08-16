@@ -1,4 +1,3 @@
-import { findMovieApi, MovieOverviewDetailApi } from "@/api";
 import ActorImage from "@/components/ActorImage";
 import { Slide, SlideChild } from "@/components/ReactSlice";
 import Image from "next/image";
@@ -10,15 +9,15 @@ export default async function OverviewMovie({
 }: {
   params: { id: string };
 }) {
-  const overviewMovie = await MovieOverviewDetailApi(params.id);
-  const findMovie = await findMovieApi(params.id);
+  // const overviewMovie = await MovieOverviewDetailApi(params.id);
+  // const findMovie = await findMovieApi(params.id);
   // console.log("overviewMovie", overviewMovie);
   // console.log("findMovie", findMovie);
-  const actor = findMovie.results[0].principals;
+  // const actor = findMovie.results[0].principals;
 
-  const audienceRated = overviewMovie.ratings.canRate;
-  const audienceScore = overviewMovie.ratings.rating * 10;
-  const audienceRatingCount = overviewMovie.ratings.ratingCount;
+  // const audienceRated = overviewMovie.ratings.canRate;
+  // const audienceScore = overviewMovie.ratings.rating * 10;
+  // const audienceRatingCount = overviewMovie.ratings.ratingCount;
 
   return (
     <div>

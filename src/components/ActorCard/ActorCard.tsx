@@ -21,7 +21,7 @@ export default function ActorCard({
         method: "GET",
         headers: {
           "X-RapidAPI-Key":
-            "b29180847fmshbfcbdaeffc4d17bp1744cajsn7be3581f3962",
+            "5ff7f797ddmsh24044434aba1c7ap17974ajsn002dcd1c7fbc",
           "X-RapidAPI-Host": "imdb8.p.rapidapi.com",
         },
       };
@@ -29,7 +29,7 @@ export default function ActorCard({
       fetch(url, options)
         .then((res) => res.json())
         .then((data) => {
-          console.log("data", data);
+          // console.log("data", data);
           setBioActor(data);
         });
     } catch (error) {
@@ -55,10 +55,7 @@ export default function ActorCard({
       bioActor != null && (
         <article className="flex flex-row border p-2 gap-5 bg-[#d7d7d7] w-full rounded-lg">
           <div className="w-1/4">
-            {(bioActor as any)?.image
-              ? (bioActor as any).image.url
-              : "/img-notfound.png"}
-            <img
+            <Image
               src={
                 (bioActor as any)?.image
                   ? (bioActor as any).image.url
@@ -72,18 +69,15 @@ export default function ActorCard({
           </div>
           <div className="w-3/4">
             <h1 className="text">
-              1.{" "}
+              {index + 1}.{" "}
               <Link href="" className="text-xl font-medium">
-                Paul Reubens
+                {(bioActor as any).name}
               </Link>
             </h1>
             <p className="text-sm py-2">Actor | Pee-wee's Playhouse</p>
             <p>
-              Paul Reubens was born Paul Rubenfeld on August 27, 1952 in
-              Peekskill, New York, to Judy (Rosen), a teacher, and Milton
-              Rubenfeld, a car salesman who had flown for the air forces of the
-              U.S., U.K., and Israel, becoming one of the latter country's
-              pioneering pilots. Paul grew up in Sarasota, Florida,...
+              "Frequently works with directors Nicolas Winding Refn, Derek
+              Cianfrance, and Damien Chazelle"
             </p>
           </div>
         </article>

@@ -1,11 +1,12 @@
 import Link from "next/link";
 import { Slide, SlideChild } from "@/components/ReactSlice";
-import Movie from "@/components/Movie";
 import { GetMostPopTvShowApi } from "@/api/Movie";
 
-export default async function MPTVShowsApi() {
-  const popTVMoviesList = await GetMostPopTvShowApi();
-  const moviesList = popTVMoviesList?.slice(0, 12);
+export default async function MPTVShowsApi({
+  moviesList,
+}: {
+  moviesList: any;
+}) {
   return (
     <section className="px-5">
       <div className="flex justify-between p-4">

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Slide, SlideChild } from "@/components/ReactSlice";
 import { GetOverviewDetailsApi } from "@/api/Movie";
 import MovieCard from "@/components/MovieCard";
+import { getInfoMovie } from "@/api/NewApi/getInfoMovie";
 
 export default function MostPopularMovies({ moviesList }: { moviesList: any }) {
   async function handleMovie(params: any) {
@@ -10,7 +11,8 @@ export default function MostPopularMovies({ moviesList }: { moviesList: any }) {
     const id = params.slice(7, params.length - 1);
 
     try {
-      const res = await GetOverviewDetailsApi(id);
+      const res = await getInfoMovie(id);
+      // console.log("fetch data o MPMovie", res);
       return res;
     } catch (error) {
       console.log("error", error);
@@ -19,7 +21,7 @@ export default function MostPopularMovies({ moviesList }: { moviesList: any }) {
   }
 
   return (
-    <section className="px-5 mx-auto">
+    <section className="w-full">
       <div className="flex justify-between p-4">
         <h1 className="font-semibold">MOST POPULAR MOVIES</h1>
         <Link href="#" className="font-medium">

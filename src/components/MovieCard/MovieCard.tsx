@@ -1,5 +1,8 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 export default function MovieCard({
   item,
@@ -8,21 +11,44 @@ export default function MovieCard({
   item: string;
   handleMovie: (param: string) => void;
 }) {
-  //   const data = handleMovie(item);
-  //   console.log("data from handleMovie", data);
+  // const data = handleMovie(item);
+  // console.log("data from handleMovie", data);
+  const [movieData, setMovieData] = useState();
+
+  async function handleMovieApi() {
+    const data: any = await handleMovie(item);
+    setMovieData(data);
+  }
+
+  useEffect(() => {
+    if (movieData == undefined) {
+      handleMovieApi();
+    }
+    setTimeout(() => {
+      handleMovieApi();
+    }, 18000000);
+  }, []);
+
+  console.log("movideData", movieData);
+
+  const id = (movieData as any)?.id;
+  const rating = (movieData as any)?.rating.star * 10;
+  const title = (movieData as any)?.title;
+  const img = (movieData as any)?.image;
+
   return (
     <>
-      <Link href="/" className="opacity-90 hover:opacity-100">
+      <Link href={`/info/${id}`} className="opacity-90 hover:opacity-100">
         <Image
-          src="/sri.jpg"
+          src={img}
           alt="Movie img"
           width={180}
           height={260}
-          className="rounded-lg h-[260px]"
+          className="rounded-md h-[260px]"
         />
         <div className="py-3">
-          {/* <p>{`${rating ? percentRating + "%" : "---"}`}</p> */}
-          {/* <p>{data.title.title}</p> */}
+          <p>{rating}</p>
+          <p>{title}</p>
         </div>
       </Link>
     </>

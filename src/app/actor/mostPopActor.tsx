@@ -1,7 +1,4 @@
-import { ActorBioApi, MostPopularActorApi } from "@/api";
 import ActorCard from "@/components/ActorCard";
-import Image from "next/image";
-import Link from "next/link";
 
 export default async function News() {
   const popActorList = await MostPopularActorApi();
@@ -20,7 +17,11 @@ export default async function News() {
           <div className="flex flex-col items-center gap-3 xl:w-2/3 w-full rounded-lg">
             {first50Actors?.map((item: any, index: number) => {
               return (
-                <ActorCard key={index} idActor={item.slice(6, item.length)} />
+                <ActorCard
+                  key={index}
+                  index={index}
+                  idActor={item.slice(6, item.length)}
+                />
               );
             })}
           </div>

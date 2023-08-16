@@ -1,6 +1,6 @@
 const env = require("dotenv").config().parsed;
 const rapidApiKey = env.X_RAPIDAPI_KEY;
-const rapidApiHost = env.X_RAPIDAPI_Host;
+const rapidApiHost = env.X_RAPIDAPI_HOST;
 
 // get api movies
 export async function FindMovieApi(idMovie: string) {
