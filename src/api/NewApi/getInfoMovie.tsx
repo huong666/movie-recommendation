@@ -1,5 +1,6 @@
 export async function getInfoMovie(idMovie: string) {
   const url = "http://127.0.0.1:3000/title/" + idMovie;
+  // const url = "https://imdb-api.projects.thetuhin.com/title/" + idMovie;
 
   try {
     const result = await fetch(url).then((res) => {
