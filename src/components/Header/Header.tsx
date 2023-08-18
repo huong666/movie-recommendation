@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
+import DropdownMenu from "./DropdownMenu";
 
 export default function Header() {
   const [stickyMenu, setstickyMenu] = useState<boolean | null>(null);
@@ -118,13 +119,13 @@ export default function Header() {
           </form>
         </div>
 
-        <div className="flex items-center">
+        <div className="flex items-center gap-3">
           <Switch
             id="setDarkMode"
             onClick={onMode}
             checked={mode == "dark" ? true : false}
           />
-          <label htmlFor="setDarkMode" className="ml-3 font-medium">
+          <label htmlFor="setDarkMode" className="font-medium">
             <Image
               priority
               src="/icons/icon-sun.svg"
@@ -142,6 +143,7 @@ export default function Header() {
               className="dark:block hidden"
             />
           </label>
+          <DropdownMenu />
         </div>
       </div>
     </header>

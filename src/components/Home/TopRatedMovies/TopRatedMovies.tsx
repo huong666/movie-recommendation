@@ -9,7 +9,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { handleMovie } from "@/lib/serverFun";
-import RowMovie from "@/components/MoviesRender/RowMovie";
+import { RowMovie } from "@/components/MoviesRender";
 
 export default async function TopRatedMovies({
   moviesList,

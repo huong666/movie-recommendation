@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Slide, SlideChild } from "@/components/ReactSlice";
-import MovieCard from "@/components/MoviesRender/MovieCard";
+import { MovieCard } from "@/components/MoviesRender";
 import { handleMovie } from "@/lib/serverFun";
 
 export default function MostPopularMovies({ moviesList }: { moviesList: any }) {
@@ -15,7 +15,7 @@ export default function MostPopularMovies({ moviesList }: { moviesList: any }) {
       <div className="flex gap-5">
         <Slide
           options={{
-            start: 1,
+            start: 0,
             width: "100%",
             gap: "2rem",
             padding: "1rem",

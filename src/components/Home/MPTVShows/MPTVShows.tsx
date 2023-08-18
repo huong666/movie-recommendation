@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Slide, SlideChild } from "@/components/ReactSlice";
 import { GetMostPopTvShowApi } from "@/api/Movie";
-import MovieCard from "@/components/MoviesRender/MovieCard";
+import { MovieCard } from "@/components/MoviesRender";
 import { handleMovie } from "@/lib/serverFun";
 
 export default async function MPTVShowsApi({
@@ -20,7 +20,7 @@ export default async function MPTVShowsApi({
       <div className="flex gap-5">
         <Slide
           options={{
-            start: 1,
+            start: 0,
             width: "100%",
             gap: "2rem",
             padding: "1rem",
