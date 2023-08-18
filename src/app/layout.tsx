@@ -18,7 +18,7 @@ export default async function RootLayout({
 }) {
   return (
     <html lang="en" className="">
-      <body className={`max-w-screen-2xl mx-auto ${inter.className}`}>
+      <body className={`${inter.className}`}>
         <Header />
         {children}
         <Footer />

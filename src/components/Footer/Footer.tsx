@@ -5,7 +5,7 @@ import { BsInstagram, BsFacebook, BsGithub } from "react-icons/bs";
 
 export default function Footer() {
   return (
-    <footer className="flex flex-row justify-between py-5 px-20 shadow-md dark:shadow-slate-900 shadow-slate-100 text-gray-600">
+    <footer className="flex md:flex-row flex-col gap-5 justify-between py-5 2xl:px-56 xl:px-36 lg:px-12 px-8  shadow-md dark:shadow-slate-900 shadow-slate-100 text-gray-600">
       <div className="flex gap-3 opacity-80 cursor-pointer">
         <div className="flex items-center justify-between gap-5">
           <BsGithub className="text-black dark:text-white w-[27px] h-[27px]" />

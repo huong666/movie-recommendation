@@ -10,21 +10,37 @@ export default async function MPTVShowsApi({
   moviesList: any;
 }) {
   return (
-    <section className="px-5">
+    <section className="w-full">
       <div className="flex justify-between p-4">
         <h1 className="font-semibold">MOST POPULAR TV SHOWS</h1>
         <Link href="#" className="font-medium text-sm">
           VIEW ALL
         </Link>
       </div>
-      <div className="flex gap-5 p-1">
+      <div className="flex gap-5">
         <Slide
           options={{
             start: 1,
             width: "100%",
             gap: "2rem",
+            padding: "1rem",
             perPage: 6,
             pagination: false,
+
+            breakpoints: {
+              1024: {
+                perPage: 5,
+              },
+              768: {
+                perPage: 4,
+              },
+              425: {
+                perPage: 2,
+              },
+              378: {
+                perPage: 1,
+              },
+            },
           }}
           aria-label="..."
         >

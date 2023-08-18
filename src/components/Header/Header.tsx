@@ -55,12 +55,12 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed left-0 right-0 mx-auto flex flex-row justify-between py-5 px-20 transition-all duration-300 ease-linear ${
+      className={`fixed left-0 right-0 mx-auto flex flex-row justify-between py-5 2xl:px-56 xl:px-36 lg:px-12 px-8  transition-all duration-300 ease-linear ${
         stickyMenu &&
         "shadow-md shadow-slate-100 dark:shadow-slate-900 z-10 bg-white dark:bg-slate-900"
       }`}
     >
-      <div className="w-1/2 flex flex-row justify-between items-center">
+      <div className="xl:w-1/2 sm:w-1/3 w-1/2 flex flex-row justify-between items-center">
         <Image
           priority
           src="/logo/logo-light.svg"
@@ -78,8 +78,8 @@ export default function Header() {
           className="hidden dark:block"
         />
       </div>
-      <div className="flex justify-between w-1/2">
-        <nav className="" id="Choose Type List">
+      <div className="flex justify-between xl:w-1/2 sm:w-2/3 w-1/2">
+        <nav className="lg:block hidden" id="Choose Type List">
           <ul className="flex gap-10 font-medium h-full">
             <li className="cursor-pointer my-auto">
               <Link href="/">Home</Link>
@@ -100,6 +100,7 @@ export default function Header() {
               handleSearchMovies(onSubmit);
             }}
             action={"/find"}
+            className="md:block hidden"
           >
             <input
               type="text"

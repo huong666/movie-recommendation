@@ -8,18 +8,34 @@ export default function MostPopularMovies({ moviesList }: { moviesList: any }) {
     <section className="w-full">
       <div className="flex justify-between p-4">
         <h1 className="font-semibold">MOST POPULAR MOVIES</h1>
-        <Link href="#" className="font-medium">
+        <Link href="#" className="font-medium text-sm">
           VIEW ALL
         </Link>
       </div>
-      <div className="flex gap-5 p-1">
+      <div className="flex gap-5">
         <Slide
           options={{
             start: 1,
             width: "100%",
             gap: "2rem",
+            padding: "1rem",
             perPage: 6,
             pagination: false,
+            // mediaQuery: 'min',
+            breakpoints: {
+              1024: {
+                perPage: 5,
+              },
+              768: {
+                perPage: 4,
+              },
+              425: {
+                perPage: 2,
+              },
+              378: {
+                perPage: 1,
+              },
+            },
           }}
           aria-label="..."
         >

@@ -24,7 +24,7 @@ export default async function infoMovie({
   return (
     <div>
       <title>MR - Movie Infomation</title>
-      <div className="py-16 px-20 pt-28">
+      <div className="py-16 px-[6.5rem] pt-28">
         {/* title */}
         <div className="flex items-center gap-2 text-xl font-medium">
           <Link href="/">Home</Link>
@@ -155,7 +155,19 @@ export default async function infoMovie({
                   </p>
                   <p>
                     <strong>Directors: </strong>
-                    {infoMovie.directors[0]}
+                    {infoMovie.directors.length == 0
+                      ? "Not Update Yet!"
+                      : infoMovie.directors.map(
+                          (item: string, index: number) => {
+                            return (
+                              <span key={index}>
+                                {index == infoMovie.directors.length - 1
+                                  ? item
+                                  : item + ", "}
+                              </span>
+                            );
+                          }
+                        )}
                   </p>
                   {/* <p>
                     <strong>Rank: </strong>
