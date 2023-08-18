@@ -60,7 +60,7 @@ export default function Header() {
         "shadow-md shadow-slate-100 dark:shadow-slate-900 z-10 bg-white dark:bg-slate-900"
       }`}
     >
-      <div className="xl:w-1/2 sm:w-1/3 w-1/2 flex flex-row justify-between items-center">
+      <div className="2xl:w-1/2 sm:w-1/3 w-1/2 flex flex-row justify-between items-center">
         <Image
           priority
           src="/logo/logo-light.svg"
@@ -78,7 +78,7 @@ export default function Header() {
           className="hidden dark:block"
         />
       </div>
-      <div className="flex justify-between xl:w-1/2 sm:w-2/3 w-1/2">
+      <div className="flex justify-between 2xl:w-1/2 sm:w-2/3 w-1/2">
         <nav className="lg:block hidden" id="Choose Type List">
           <ul className="flex gap-10 font-medium h-full">
             <li className="cursor-pointer my-auto">

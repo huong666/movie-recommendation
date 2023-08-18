@@ -24,7 +24,7 @@ export default async function Home() {
         <MPMovies moviesList={mostPopMoviesList.slice(0, 12)} />
         <MPTVShows moviesList={mostPopTvShowList.slice(0, 12)} />
       </section>
-      <section className="grid md:grid-cols-2 grid-cols-1 gap-5">
+      <section className="grid lg:grid-cols-2 grid-cols-1 gap-5">
         <div className="col-span-1 ">
           <TopRatedMovies moviesList={topMovieRatedList.slice(0, 10)} />
         </div>

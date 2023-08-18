@@ -26,8 +26,14 @@ export default async function MPTVShowsApi({
             padding: "1rem",
             perPage: 6,
             pagination: false,
-
+            mediaQuery: "min",
             breakpoints: {
+              1700: {
+                perPage: 7,
+              },
+              1440: {
+                perPage: 6,
+              },
               1024: {
                 perPage: 5,
               },
@@ -37,7 +43,7 @@ export default async function MPTVShowsApi({
               425: {
                 perPage: 2,
               },
-              378: {
+              0: {
                 perPage: 1,
               },
             },
@@ -46,7 +52,7 @@ export default async function MPTVShowsApi({
         >
           {moviesList.map((item: any, index: number) => {
             return (
-              <SlideChild className="" key={index}>
+              <SlideChild className="hover:bg-slate-200" key={index}>
                 <MovieCard item={item} handleMovie={handleMovie} />
               </SlideChild>
             );

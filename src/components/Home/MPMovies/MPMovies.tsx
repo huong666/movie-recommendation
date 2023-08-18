@@ -21,8 +21,14 @@ export default function MostPopularMovies({ moviesList }: { moviesList: any }) {
             padding: "1rem",
             perPage: 6,
             pagination: false,
-            // mediaQuery: 'min',
+            mediaQuery: "min",
             breakpoints: {
+              1700: {
+                perPage: 7,
+              },
+              1440: {
+                perPage: 6,
+              },
               1024: {
                 perPage: 5,
               },
@@ -32,7 +38,7 @@ export default function MostPopularMovies({ moviesList }: { moviesList: any }) {
               425: {
                 perPage: 2,
               },
-              378: {
+              0: {
                 perPage: 1,
               },
             },

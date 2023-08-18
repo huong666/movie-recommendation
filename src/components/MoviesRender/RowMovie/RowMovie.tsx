@@ -53,12 +53,15 @@ export default function CellMovie({
     );
   return (
     <TableRow>
-      <TableCell>
-        <Link href={`/info/${id}`}>{title}</Link>
-      </TableCell>
-      <TableCell className="text-right font-semibold">
-        {type == "rating" ? rating : releaseDate}
-      </TableCell>
+      <Link
+        href={`/info/${id}`}
+        className="flex items-center justify-between dark:hover:bg-slate-900 hover:bg-slate-100"
+      >
+        <TableCell>{title}</TableCell>
+        <TableCell className="text-right font-semibold">
+          {type == "rating" ? rating : releaseDate}
+        </TableCell>
+      </Link>
     </TableRow>
   );
 }
