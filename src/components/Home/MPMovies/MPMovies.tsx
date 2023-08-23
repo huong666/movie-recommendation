@@ -35,7 +35,7 @@ export default function MostPopularMovies({ moviesList }: { moviesList: any }) {
               768: {
                 perPage: 4,
               },
-              425: {
+              390: {
                 perPage: 2,
               },
               0: {

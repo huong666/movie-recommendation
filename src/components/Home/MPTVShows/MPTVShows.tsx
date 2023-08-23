@@ -40,7 +40,7 @@ export default async function MPTVShowsApi({
               768: {
                 perPage: 4,
               },
-              425: {
+              390: {
                 perPage: 2,
               },
               0: {

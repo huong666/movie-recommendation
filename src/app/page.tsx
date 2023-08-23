@@ -29,7 +29,7 @@ export default async function Home() {
   const comingSoonMoviesList = await GetComingSoonMoviesApi();
 
   return (
-    <main className="min-h-screen py-20 2xl:px-52 xl:px-32 lg:px-8 px-4 pt-28">
+    <main className="min-h-screen py-20 2xl:px-52 xl:px-32 lg:px-8 px-0 pt-28">
       <section className="flex flex-col justify-center items-center gap-5 mb-10">
         <LazyMPMovies moviesList={mostPopMoviesList.slice(0, 12)} />
         <LazyMPTVShows moviesList={mostPopTvShowList.slice(0, 12)} />

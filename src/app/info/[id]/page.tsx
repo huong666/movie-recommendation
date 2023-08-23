@@ -24,7 +24,7 @@ export default async function infoMovie({
   return (
     <div>
       <title>MR - Movie Infomation</title>
-      <div className="py-16 px-[6.5rem] pt-28">
+      <div className="py-16 pt-28 2xl:px-56 xl:px-36 lg:px-12 px-4">
         {/* title */}
         <div className="flex items-center gap-2 text-xl font-medium">
           <Link href="/">Home</Link>
@@ -33,18 +33,18 @@ export default async function infoMovie({
           {infoMovie.title} {infoMovie.year}
         </div>
         {/* hero */}
-        <section className="px-10 py-5">
-          <div className="flex flex-row gap-5">
-            <div className="w-1/6 rounded-lg">
+        <section className="md:px-10 md:py-5">
+          <div className="flex sm:flex-row flex-col gap-5">
+            <div className="lg:w-1/6 sm:w-1/4 w-full rounded-lg">
               <Image
                 src={infoMovie.image}
                 alt="Movie Image"
                 width={200}
                 height={333}
-                className="rounded-lg"
+                className="rounded-lg mx-auto"
               />
             </div>
-            <div className="w-5/6 flex flex-col gap-10 justify-center items-center rounded-lg bg-slate-100 dark:bg-slate-900">
+            <div className="lg:w-5/6 sm:w-3/4 w-full flex flex-col gap-10 justify-center items-center rounded-lg bg-slate-100 dark:bg-slate-900">
               <div className="text-center">
                 <h1 className="text-3xl font-semibold mb-3">
                   {infoMovie.title}
@@ -92,7 +92,7 @@ export default async function infoMovie({
           </div>
         </section>
         {/* movie info */}
-        <section className="px-10 py-5">
+        <section className="md:px-10 py-5">
           <div className="">
             <div className="flex flex-col gap-3 bg-slate-100 dark:bg-gray-900 rounded-lg p-8">
               <h1 className="text-xl font-medium mb-2 ">WHAT TO KNOW</h1>
@@ -128,7 +128,7 @@ export default async function infoMovie({
                   })}
                 </Slide>
               </div>
-              <div className="grid grid-cols-2">
+              <div className="grid sm:grid-cols-2 grid-cols-1">
                 <div className="flex flex-col gap-3">
                   <p>
                     <strong>Genres: </strong>

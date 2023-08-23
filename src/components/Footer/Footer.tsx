@@ -13,7 +13,10 @@ export default function Footer() {
           <BsFacebook className="text-black dark:text-white w-[27px] h-[27px]" />
         </div>
       </div>
-      <p> ©2023 All rights reserved. Created by An Huong</p>
+      <p>
+        ©2023 All rights reserved. <br className="sm:hidden block" /> Created by
+        An Huong
+      </p>
       <div className="flex gap-5 cursor-pointer">
         <span className="hover:text-black dark:hover:text-slate-500">
           Vietnamese
