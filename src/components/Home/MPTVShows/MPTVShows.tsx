@@ -52,7 +52,10 @@ export default async function MPTVShowsApi({
         >
           {moviesList.map((item: any, index: number) => {
             return (
-              <SlideChild className="hover:bg-slate-200" key={index}>
+              <SlideChild
+                className=" hover:bg-slate-200 dark:hover:bg-slate-900 rounded-md"
+                key={index}
+              >
                 <MovieCard item={item} handleMovie={handleMovie} />
               </SlideChild>
             );

@@ -48,7 +48,10 @@ export default function MostPopularMovies({ moviesList }: { moviesList: any }) {
           {moviesList.map((item: any, index: number) => {
             // const percentRating = Math.round((rating.rating / 10) * 100);
             return (
-              <SlideChild className="" key={index}>
+              <SlideChild
+                className=" hover:bg-slate-200 dark:hover:bg-slate-900 rounded-md"
+                key={index}
+              >
                 <MovieCard item={item} handleMovie={handleMovie} />
               </SlideChild>
             );

@@ -105,10 +105,11 @@ export default async function infoMovie({
                 <Slide
                   options={{
                     start: 1,
-                    fixedWidth: 250,
+                    autoWidth: "auto",
+                    // fixwidth: 250,
                     height: 170,
                     gap: "1rem",
-                    perPage: 4,
+                    // perPage: 6,
                     pagination: false,
                   }}
                 >
