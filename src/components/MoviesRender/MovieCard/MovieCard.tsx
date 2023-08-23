@@ -2,7 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export default function MovieCard({
   item,
@@ -36,19 +37,23 @@ export default function MovieCard({
 
   return (
     <>
-      <Link href={`/info/${id}`} className="opacity-90 hover:opacity-100">
-        <Image
-          src={img}
-          alt="Movie img"
-          width={180}
-          height={280}
-          className="rounded-md h-[280px] w-full mx-auto"
-        />
-        <div className="py-3 mx-auto">
-          <p className="font-semibold">{rating}%</p>
-          <p className="text-sm">{title}</p>
-        </div>
-      </Link>
+      {img == undefined ? (
+        <Skeleton className="w-[200px] h-[300px]" />
+      ) : (
+        <Link href={`/info/${id}`} className="opacity-90 hover:opacity-100">
+          <Image
+            src={img}
+            alt="Movie img"
+            width={180}
+            height={280}
+            className="rounded-md h-[280px] w-full mx-auto"
+          />
+          <div className="py-3 mx-auto">
+            <p className="font-semibold">{rating}%</p>
+            <p className="text-sm">{title}</p>
+          </div>
+        </Link>
+      )}
     </>
   );
 }

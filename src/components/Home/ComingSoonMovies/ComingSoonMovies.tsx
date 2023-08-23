@@ -1,4 +1,4 @@
-import RowMovie from "@/components/MoviesRender/RowMovie";
+import { RowMovie } from "@/components/MoviesRender";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { handleMovie } from "@/lib/serverFun";
 import Link from "next/link";

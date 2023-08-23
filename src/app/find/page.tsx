@@ -29,10 +29,12 @@ export default function SearchMovie({
 
   return (
     <section className="w-full">
-      <div className="w-full py-40 px-20">
-        <div className="grid grid-cols-6 gap-10">
+      <div className="min-h-screen py-20 2xl:px-56 xl:px-36 lg:px-12 px-8 pt-28">
+        <h1 className="my-5 text-xl font-medium">
+          Search: {searchParams.SearchMovie}
+        </h1>
+        <div className="grid xl:grid-cols-6 lg:grid-cols-5 sm:grid-cols-3 grid-cols-2 ss:grid-cols-1 gap-10">
           {searchData?.results.map((item: any) => {
-            console.log(item.id);
             return (
               <Link href={`/info/${item.id}`} key={item.id} className="">
                 <Image
