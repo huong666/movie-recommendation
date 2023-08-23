@@ -4,7 +4,7 @@ export async function getMoviesSearchApi(string: string) {
     "https://imdb-api.nguyenxuananhuong541.workers.dev/search?query=" + string;
 
   try {
-    const response = await fetch(url, { cache: "no-store" });
+    const response = await fetch(url);
     const result = await response.json();
     return result;
   } catch (error) {

@@ -16,7 +16,6 @@ import dynamic from "next/dynamic";
 const LazyComingSoonMovies = dynamic(
   () => import("@/components/Home/ComingSoonMovies")
 );
-
 const LazyTopRatedMovies = dynamic(
   () => import("@/components/Home/TopRatedMovies")
 );

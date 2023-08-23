@@ -44,22 +44,20 @@ export default function CellMovie({
   const rating = (movieData as any)?.rating.star * 10 + "%";
 
   // console.log("releaseDate", releaseDate);
-  if (movieData == undefined)
-    return (
-      <TableRow>
-        <TableCell className="">Loading</TableCell>
-        <TableCell className="text-right font-semibold">Loading</TableCell>
-      </TableRow>
-    );
+  // if (movieData == undefined) return <TableRow></TableRow>;
   return (
     <TableRow>
       <Link
         href={`/info/${id}`}
-        className="flex items-center justify-between dark:hover:bg-slate-900 hover:bg-slate-100"
+        className="flex items-center justify-between dark:hover:bg-slate-900 hover:bg-slate-100 w-full"
       >
-        <TableCell>{title}</TableCell>
+        <TableCell>{title ? title : "Loading"}</TableCell>
         <TableCell className="text-right font-semibold">
-          {type == "rating" ? rating : releaseDate}
+          {movieData == undefined
+            ? "Loading"
+            : type == "rating"
+            ? rating
+            : releaseDate}
         </TableCell>
       </Link>
     </TableRow>
