@@ -43,7 +43,6 @@ export default function MostPopularMovies({ moviesList }: { moviesList: any }) {
               },
             },
           }}
-          aria-label="..."
         >
           {moviesList.map((item: any, index: number) => {
             // const percentRating = Math.round((rating.rating / 10) * 100);

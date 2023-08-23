@@ -4,11 +4,7 @@ import { GetMostPopTvShowApi } from "@/api/Movie";
 import { MovieCard } from "@/components/MoviesRender";
 import { handleMovie } from "@/lib/serverFun";
 
-export default async function MPTVShowsApi({
-  moviesList,
-}: {
-  moviesList: any;
-}) {
+export default function MPTVShowsApi({ moviesList }: { moviesList: any }) {
   return (
     <section className="w-full">
       <div className="flex justify-between p-4">
@@ -48,7 +44,6 @@ export default async function MPTVShowsApi({
               },
             },
           }}
-          aria-label="..."
         >
           {moviesList.map((item: any, index: number) => {
             return (

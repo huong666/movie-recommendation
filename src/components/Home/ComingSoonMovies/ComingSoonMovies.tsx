@@ -3,7 +3,7 @@ import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { handleMovie } from "@/lib/serverFun";
 import Link from "next/link";
 
-export default async function ComingSoonMoviesApi({
+export default function ComingSoonMoviesApi({
   moviesList,
 }: {
   moviesList: any;

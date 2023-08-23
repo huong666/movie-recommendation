@@ -8,9 +8,7 @@ export async function getInfoMovie(idMovie: string) {
     "https://imdb-api.nguyenxuananhuong541.workers.dev/title/" + idMovie;
 
   try {
-    const result = await fetch(url).then((res) => {
-      return res.json();
-    });
+    const result = await fetch(url).then((res) => res.json());
     // console.log("data from cookies", cookies().get("data"));
     return result;
   } catch (error) {

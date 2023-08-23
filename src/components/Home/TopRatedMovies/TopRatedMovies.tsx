@@ -11,11 +11,7 @@ import {
 import { handleMovie } from "@/lib/serverFun";
 import { RowMovie } from "@/components/MoviesRender";
 
-export default async function TopRatedMovies({
-  moviesList,
-}: {
-  moviesList: any;
-}) {
+export default function TopRatedMovies({ moviesList }: { moviesList: any }) {
   // const moviesTopRatedList = await GetTopRatedMoviesApi();
   // const fisrtTenMovie = moviesTopRatedList.slice(0, 10);
 
