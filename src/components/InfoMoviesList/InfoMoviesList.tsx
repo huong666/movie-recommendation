@@ -3,12 +3,6 @@
 import { MovieCard } from "../MoviesRender";
 import { handleMovie } from "@/lib/serverFun";
 import {
-  GetComingSoonMoviesApi,
-  GetMostPopTvShowApi,
-  GetPopMoviesApi,
-  GetTopRatedMoviesApi,
-} from "@/api/Movie";
-import {
   Popover,
   PopoverContent,
   PopoverTrigger,
@@ -28,10 +22,19 @@ export default function InfoMoviesList({
   handleMovieList: (typeList: TypeList) => void;
 }) {
   const [typeList, setTypeList] = useState<TypeList>("comingsoonmovies");
+  const [infoMovies, setInfoMovies] = useState<any[]>();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  async function getMovieList(typeList: TypeList) {
+    const data: any = await handleMovieList(typeList);
+    setInfoMovies(data);
+  }
 
   useEffect(() => {
-    const data = handleMovieList(typeList);
-    console.log("data info", data);
+    setIsLoading(true);
+    setInfoMovies(undefined);
+    getMovieList(typeList);
+    setIsLoading(false);
   }, [typeList]);
 
   return (
@@ -78,15 +81,17 @@ export default function InfoMoviesList({
       </Popover>
       <hr className="my-5 border-black dark:border-white" />
       <div className="grid xl:grid-cols-6 lg:grid-cols-5 sm:grid-cols-3 grid-cols-2 ss:grid-cols-1 gap-10">
-        {/* {moviesList?.slice(0, 24).map((item: any) => {
-          return (
-            <MovieCard
-              item={item === Object ? item.id : item}
-              handleMovie={handleMovie}
-              key={item.id}
-            />
-          );
-        })} */}
+        {isLoading === true
+          ? "Is Loading"
+          : infoMovies?.slice(0, 24).map((item: any, index: number) => {
+              return (
+                <MovieCard
+                  key={index}
+                  item={item.id === undefined ? item : item.id}
+                  handleMovie={handleMovie}
+                />
+              );
+            })}
       </div>
     </section>
   );
