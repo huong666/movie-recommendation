@@ -61,5 +61,20 @@ export default function CellMovie({
         </TableCell>
       </Link>
     </TableRow>
+    // <div className="h-12 px-4 text-left align-middle font-medium text-muted-foreground  ">
+    //   <Link
+    //     href={`/info/${id}`}
+    //     className="flex items-center justify-between dark:hover:bg-slate-900 hover:bg-slate-100 w-full h-full text-black dark:text-white"
+    //   >
+    //     <span className="">{title ? title : "Loading"}</span>
+    //     <span className="text-right font-semibold">
+    //       {movieData == undefined
+    //         ? "Loading"
+    //         : type == "rating"
+    //         ? rating
+    //         : releaseDate}
+    //     </span>
+    //   </Link>
+    // </div>
   );
 }

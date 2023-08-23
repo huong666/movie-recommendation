@@ -12,22 +12,27 @@ type TypeList =
   | "mostpopularmovies"
   | "mostpopulartvshows";
 export default async function Info() {
-  let typeList: TypeList = "comingsoonmovies";
+  // let typeList: TypeList = "mostpopulartvshows";
 
-  const moviesList =
-    typeList == "comingsoonmovies"
-      ? await GetComingSoonMoviesApi()
-      : typeList == "mostpopulartvshows"
-      ? await GetMostPopTvShowApi()
-      : typeList == "topratedmovies"
-      ? await GetTopRatedMoviesApi()
-      : await GetPopMoviesApi();
+  const handleMovieList = async (typeList: TypeList) => {
+    "use server";
+
+    const moviesList =
+      typeList == "comingsoonmovies"
+        ? await GetComingSoonMoviesApi()
+        : typeList == "mostpopulartvshows"
+        ? await GetMostPopTvShowApi()
+        : typeList == "topratedmovies"
+        ? await GetTopRatedMoviesApi()
+        : await GetPopMoviesApi();
+
+    const moviesListdata = await moviesList;
+    return moviesListdata;
+  };
 
   return (
     <main className="min-h-screen py-20 2xl:px-56 xl:px-36 lg:px-12 px-8 pt-28">
-      <PopoverChooseTypeMovieList />
-      <hr className="my-5 border-black dark:border-white" />
-      <InfoMoviesList moviesList={moviesList} />
+      <InfoMoviesList handleMovieList={handleMovieList} />
     </main>
   );
 }

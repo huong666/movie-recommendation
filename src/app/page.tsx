@@ -13,14 +13,14 @@ import {
 } from "@/components/Home";
 import dynamic from "next/dynamic";
 
-const LazyComingSoonMovies = dynamic(
-  () => import("@/components/Home/ComingSoonMovies")
-);
-const LazyTopRatedMovies = dynamic(
-  () => import("@/components/Home/TopRatedMovies")
-);
-const LazyMPTVShows = dynamic(() => import("@/components/Home/MPTVShows"));
-const LazyMPMovies = dynamic(() => import("@/components/Home/MPMovies"));
+// const LazyComingSoonMovies = dynamic(
+//   () => import("@/components/Home/ComingSoonMovies")
+// );
+// const LazyTopRatedMovies = dynamic(
+//   () => import("@/components/Home/TopRatedMovies")
+// );
+// const LazyMPTVShows = dynamic(() => import("@/components/Home/MPTVShows"));
+// const LazyMPMovies = dynamic(() => import("@/components/Home/MPMovies"));
 
 export default async function Home() {
   const mostPopMoviesList = await GetPopMoviesApi();
@@ -31,17 +31,15 @@ export default async function Home() {
   return (
     <main className="min-h-screen py-20 2xl:px-52 xl:px-32 lg:px-8 px-0 pt-28">
       <section className="flex flex-col justify-center items-center gap-5 mb-10">
-        <LazyMPMovies moviesList={mostPopMoviesList.slice(0, 12)} />
-        <LazyMPTVShows moviesList={mostPopTvShowList.slice(0, 12)} />
+        <MPMovies moviesList={mostPopMoviesList.slice(0, 12)} />
+        <MPTVShows moviesList={mostPopTvShowList.slice(0, 12)} />
       </section>
       <section className="grid lg:grid-cols-2 grid-cols-1 gap-5">
         <div className="col-span-1 ">
-          <LazyTopRatedMovies moviesList={topMovieRatedList.slice(0, 10)} />
+          <TopRatedMovies moviesList={topMovieRatedList.slice(0, 10)} />
         </div>
         <div className="col-span-1">
-          <LazyComingSoonMovies
-            moviesList={comingSoonMoviesList.slice(0, 10)}
-          />
+          <ComingSoonMovies moviesList={comingSoonMoviesList.slice(0, 10)} />
         </div>
       </section>
     </main>
