@@ -1,6 +1,14 @@
+"use client";
+
+import { handleCookie } from "@/lib/serverFun";
 import Image from "next/image";
+import { useEffect } from "react";
 
 export default function HeroDetail({ infoMovie }: { infoMovie: any }) {
+  useEffect(() => {
+    handleCookie(infoMovie.id);
+  }, []);
+
   return (
     <section className="md:py-5">
       <div className="flex sm:flex-row flex-col gap-5">

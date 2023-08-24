@@ -3,6 +3,7 @@
 import { GetComingSoonMoviesApi, GetMostPopTvShowApi, GetPopMoviesApi, GetTopRatedMoviesApi } from "@/api/Movie";
 import { getInfoMovie } from "@/api/NewApi/getInfoMovie";
 import { getMoviesSearchApi } from "@/api/NewApi/getMovieSearchApi";
+import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
 type TypeList =
@@ -50,4 +51,9 @@ export async function handleMovieList(typeList : TypeList){
   } catch (error) {
     console.log("error in handleMovieList", error);
   }
+}
+
+
+export async function handleCookie(title:string) {
+  cookies().set("recently-movie", title)
 }

@@ -9,8 +9,6 @@ export default async function infoMovie({
   params: { id: string };
 }) {
   const infoMovie = await getInfoMovie(params.id);
-  // const actor = findMovie.results[0].principals;
-
   // console.log("movie Data", infoMovie);
 
   return (
