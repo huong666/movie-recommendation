@@ -15,7 +15,7 @@ export default function MovieInfo({ infoMovie }: { infoMovie: any }) {
         <div className="flex flex-col gap-3 bg-slate-100 dark:bg-gray-900 rounded-lg p-8">
           <h1 className="text-xl font-medium mb-2 ">WHAT TO KNOW</h1>
           <p className="text-justify mb-5">{infoMovie.plot}</p>
-          <div className="my-5">
+          <div className="my-5 h-[180px]">
             <Slide
               options={{
                 start: 1,
@@ -38,7 +38,7 @@ export default function MovieInfo({ infoMovie }: { infoMovie: any }) {
                         alt=""
                         width={250}
                         height={170}
-                        className="h-full rounded-md"
+                        className="h-full rounded-md object-cover"
                       />
                     )}
                   </SlideChild>

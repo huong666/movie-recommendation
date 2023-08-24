@@ -1,5 +1,6 @@
 "use client";
 
+import { Skeleton } from "@/components/ui/skeleton";
 import Image from "next/image";
 import { useEffect } from "react";
 
@@ -16,7 +17,7 @@ export default function HeroDetail({ infoMovie }: { infoMovie: any }) {
             src={infoMovie.image}
             alt="Movie Image"
             width={200}
-            height={333}
+            height={280}
             className="rounded-lg mx-auto"
           />
         </div>

@@ -42,15 +42,16 @@ export default function MovieCard({
   return (
     <>
       {img == undefined ? (
-        <Skeleton className="w-[200px] h-[300px]" />
+        <Skeleton className="w-[180px] h-[280px]" />
       ) : (
         <Link href={`/info/${id}`} className="opacity-90 hover:opacity-100">
           <Image
+            priority
             src={img}
             alt="Movie img"
             width={180}
             height={280}
-            className="rounded-md h-[280px] w-full mx-auto"
+            className="rounded-md h-[280px] w-full mx-auto object-fill"
           />
           <div className="py-3 mx-auto">
             <p className="font-semibold">{rating}%</p>
