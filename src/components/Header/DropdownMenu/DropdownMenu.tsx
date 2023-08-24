@@ -18,8 +18,8 @@ export default function DropdownMeny() {
             <Link href="/">
               <li>Home</li>
             </Link>
-            <Link href="/actor">
-              <li>News</li>
+            <Link href="/recommend">
+              <li>Recommend</li>
             </Link>
             <Link href="/info">
               <li>Info Movie</li>

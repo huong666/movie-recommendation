@@ -1,9 +1,9 @@
 "use server"
 
-import { GetComingSoonMoviesApi, GetMostPopTvShowApi, GetPopMoviesApi, GetTopRatedMoviesApi } from "@/api/Movie";
+import { GetComingSoonMoviesApi, GetMostPopTvShowApi, GetPopMoviesApi, GetRecommendApi, GetTopRatedMoviesApi } from "@/api/Movie";
+import { GetPopMoviesByGenreApi } from "@/api/Movie/getPopMoviesByGenreApi";
 import { getInfoMovie } from "@/api/NewApi/getInfoMovie";
 import { getMoviesSearchApi } from "@/api/NewApi/getMovieSearchApi";
-import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
 type TypeList =
@@ -11,6 +11,18 @@ type TypeList =
   | "topratedmovies"
   | "mostpopularmovies"
   | "mostpopulartvshows";
+
+type TypeGenreList =
+  | "action"
+  | "horror"
+  | "popular"
+  | "adventure"
+  | "comedy"
+  | "animation"
+  | "biography"
+  | "crime"
+  | "romance"
+  | "recommend";
 
 export async function handleMovie(params: any) {
   
@@ -53,7 +65,18 @@ export async function handleMovieList(typeList : TypeList){
   }
 }
 
+export async function handleGenreMoviesList(TypeGenreList:TypeGenreList) {
+  try {
+    const moviesList = await GetPopMoviesByGenreApi(TypeGenreList)
+    return moviesList
+  } catch (error) {
+    console.log(error)
+    return undefined
+  }
+}
 
-export async function handleCookie(title:string) {
-  cookies().set("recently-movie", title)
+
+export async function handleRecommendMovies(idMovie: string){
+  const infoMovies = await GetRecommendApi(idMovie);
+  return infoMovies
 }

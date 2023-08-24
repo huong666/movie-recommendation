@@ -1,7 +1,5 @@
 "use client";
 
-import { MovieCard } from "../MoviesRender";
-import { handleMovie } from "@/lib/serverFun";
 import {
   Popover,
   PopoverContent,
@@ -9,6 +7,7 @@ import {
 } from "@/components/ui/popover";
 import { useEffect, useState } from "react";
 import { AiOutlineCaretDown } from "react-icons/ai";
+import MoviesGrid from "../MoviesRender/MoviesGrid";
 
 type TypeList =
   | "comingsoonmovies"
@@ -80,19 +79,7 @@ export default function InfoMoviesList({
         </PopoverContent>
       </Popover>
       <hr className="my-5 border-black dark:border-white" />
-      <div className="grid xl:grid-cols-6 lg:grid-cols-5 sm:grid-cols-3 grid-cols-2 ss:grid-cols-1 gap-10">
-        {isLoading === true
-          ? "Is Loading"
-          : infoMovies?.slice(0, 24).map((item: any, index: number) => {
-              return (
-                <MovieCard
-                  key={index}
-                  item={item.id === undefined ? item : item.id}
-                  handleMovie={handleMovie}
-                />
-              );
-            })}
-      </div>
+      <MoviesGrid isLoading={isLoading} infoMovies={infoMovies} />
     </section>
   );
 }

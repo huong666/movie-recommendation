@@ -86,7 +86,7 @@ export default function Header() {
               <Link href="/">Home</Link>
             </li>
             <li className="cursor-pointer flex-shrink-0 my-auto">
-              <Link href="/actor">Recommended</Link>
+              <Link href="/recommend">Recommend</Link>
             </li>
             <li className="cursor-pointer flex-shrink-0 my-auto">
               <Link href="/info">Info Movie</Link>
