@@ -159,7 +159,7 @@ export default function RecomendationMoviesCom() {
           )} */}
           {typeList == "recommend" &&
             (storeLocal == true ? (
-              "We dont have enough data to recommend"
+              "We dont have enough data to recommend. Please choose type movies if you like"
             ) : (
               <MovieGrid infoMovies={infoMovies} />
             ))}
