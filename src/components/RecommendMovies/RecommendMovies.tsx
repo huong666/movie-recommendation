@@ -150,10 +150,10 @@ export default function RecomendationMoviesCom() {
           </Popover>
         </div>
         <div className="min-h-screen">
-          {infoMovies == undefined ? (
-            "Loading"
-          ) : storeLocal == true ? (
+          {storeLocal == true ? (
             "We dont have enough data to recommend"
+          ) : infoMovies == undefined ? (
+            "Loading"
           ) : (
             <MovieGrid infoMovies={infoMovies} />
           )}
