@@ -1,11 +1,4 @@
-import {
-  GetComingSoonMoviesApi,
-  GetMostPopTvShowApi,
-  GetPopMoviesApi,
-  GetTopRatedMoviesApi,
-} from "@/api/Movie";
 import InfoMoviesList from "@/components/InfoMoviesList";
-import PopoverChooseTypeMovieList from "@/components/PopoverChooseTypeMoviesList";
 import { handleMovieList } from "@/lib/serverFun";
 
 export default async function Info() {

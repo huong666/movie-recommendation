@@ -1,8 +1,5 @@
 import { getInfoMovie } from "@/api/NewApi/getInfoMovie";
 import { HeroDetail, MovieInfo } from "@/components/MovieDetail";
-import { Slide, SlideChild } from "@/components/ReactSlice";
-import { Skeleton } from "@/components/ui/skeleton";
-import Image from "next/image";
 import Link from "next/link";
 import { MdOutlineArrowForwardIos } from "react-icons/md";
 

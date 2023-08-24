@@ -10,7 +10,7 @@ export default function MovieInfo({ infoMovie }: { infoMovie: any }) {
     "/" +
     infoMovie.releaseDetailed.year;
   return (
-    <section className="md:px-10 py-5">
+    <section className="py-5">
       <div className="">
         <div className="flex flex-col gap-3 bg-slate-100 dark:bg-gray-900 rounded-lg p-8">
           <h1 className="text-xl font-medium mb-2 ">WHAT TO KNOW</h1>

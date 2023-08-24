@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function HeroDetail({ infoMovie }: { infoMovie: any }) {
   return (
-    <section className="md:px-10 md:py-5">
+    <section className="md:py-5">
       <div className="flex sm:flex-row flex-col gap-5">
         <div className="lg:w-1/6 sm:w-1/4 w-full rounded-lg">
           <Image

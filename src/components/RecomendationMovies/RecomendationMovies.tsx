@@ -1,13 +1,18 @@
 import Link from "next/link";
 import { Slide, SlideChild } from "@/components/ReactSlice";
+import { GetMostPopTvShowApi } from "@/api/Movie";
 import { MovieCard } from "@/components/MoviesRender";
 import { handleMovie } from "@/lib/serverFun";
 
-export default function MostPopularMovies({ moviesList }: { moviesList: any }) {
+export default function RecomendationMovies({
+  moviesList,
+}: {
+  moviesList: any;
+}) {
   return (
     <section className="w-full">
       <div className="flex justify-between p-4">
-        <h1 className="font-semibold">MOST POPULAR MOVIES</h1>
+        <h1 className="font-semibold">MOVIE RECOMMEND</h1>
         {/* <Link href="#" className="font-medium text-sm">
           VIEW ALL
         </Link> */}
@@ -45,7 +50,6 @@ export default function MostPopularMovies({ moviesList }: { moviesList: any }) {
           }}
         >
           {moviesList.map((item: any, index: number) => {
-            // const percentRating = Math.round((rating.rating / 10) * 100);
             return (
               <SlideChild
                 className=" hover:bg-slate-200 dark:hover:bg-slate-900 rounded-md"

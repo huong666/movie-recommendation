@@ -9,9 +9,9 @@ export default function MPTVShowsApi({ moviesList }: { moviesList: any }) {
     <section className="w-full">
       <div className="flex justify-between p-4">
         <h1 className="font-semibold">MOST POPULAR TV SHOWS</h1>
-        <Link href="#" className="font-medium text-sm">
+        {/* <Link href="#" className="font-medium text-sm">
           VIEW ALL
-        </Link>
+        </Link> */}
       </div>
       <div className="flex gap-5">
         <Slide

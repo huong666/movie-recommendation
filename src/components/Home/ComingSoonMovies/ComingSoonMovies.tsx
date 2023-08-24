@@ -16,9 +16,7 @@ export default function ComingSoonMoviesApi({
     <section className="">
       <div className="flex justify-between p-4">
         <h1 className="font-semibold">COMING SOON MOVIES</h1>
-        <Link href="#" className="font-medium text-sm">
-          VIEW ALL
-        </Link>
+        {/* <Link href="#" className="font-mes */}
       </div>
       <div>
         <Table>

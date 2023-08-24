@@ -4,6 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
+import { setCookie, getCookie, getCookies, deleteCookie } from "cookies-next";
+import { data } from "autoprefixer";
 
 export default function MovieCard({
   item,
@@ -20,6 +22,8 @@ export default function MovieCard({
     const data: any = await handleMovie(item);
     setMovieData(data);
   }
+
+  // console.log("cookie data", getCookie(item));
 
   useEffect(() => {
     if (movieData == undefined) {

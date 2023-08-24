@@ -19,9 +19,9 @@ export default function TopRatedMovies({ moviesList }: { moviesList: any }) {
     <section className="">
       <div className="flex justify-between p-4">
         <h1 className="font-semibold">TOP RATED MOVIES</h1>
-        <Link href="#" className="font-medium text-sm">
+        {/* <Link href="#" className="font-medium text-sm">
           VIEW ALL
-        </Link>
+        </Link> */}
       </div>
       <div>
         <Table>

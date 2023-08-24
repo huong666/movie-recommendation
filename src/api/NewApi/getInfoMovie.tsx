@@ -1,5 +1,3 @@
-import { cookies } from "next/headers";
-
 export async function getInfoMovie(idMovie: string) {
   // const url = "http://127.0.0.1:3001/title/" + idMovie;
   //need imdb api localhost code
@@ -9,7 +7,6 @@ export async function getInfoMovie(idMovie: string) {
 
   try {
     const result = await fetch(url).then((res) => res.json());
-    // console.log("data from cookies", cookies().get("data"));
     return result;
   } catch (error) {
     console.log(error);
