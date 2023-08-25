@@ -7,6 +7,7 @@ export async function getInfoMovie(idMovie: string) {
 
   try {
     const result = await fetch(url).then((res) => res.json());
+    // console.log(result);
     return result;
   } catch (error) {
     console.log(error);

@@ -27,10 +27,21 @@ type TypeGenreList =
 export async function handleMovie(params: any) {
   
     const id = params.slice(7, params.length - 1);
-  
+    // const fs = require("fs");
+    
     try {
       const res = await getInfoMovie(id);
-      // console.log("fetch data o MPMovie", res);
+
+// store New data in data.json
+// const data = fs.readFileSync('./src/data/data.json');
+// const jsonData = JSON.parse(data);
+// jsonData.movies = [...jsonData.movies, res]
+// const jsonString = JSON.stringify(jsonData);
+// fs.writeFileSync('./src/data/data.json', jsonString, 'utf-8', (err:any) => {
+//   if (err) throw err;
+//   console.log('Data added to file');
+// });
+
       return res;
     } catch (error) {
       console.log("error", error);

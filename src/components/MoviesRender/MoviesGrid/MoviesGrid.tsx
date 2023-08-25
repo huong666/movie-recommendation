@@ -8,6 +8,7 @@ export default function MovieGrid({
   isLoading?: boolean;
   infoMovies: any;
 }) {
+  // .slice(0, 24)
   return (
     <div className="grid xl:grid-cols-6 lg:grid-cols-5 sm:grid-cols-3 grid-cols-2 ss:grid-cols-1 gap-10">
       {isLoading === true
