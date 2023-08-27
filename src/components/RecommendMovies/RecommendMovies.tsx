@@ -81,7 +81,7 @@ export default function RecommendationMoviesCom() {
     <div>
       <div className="w-full flex flex-col justify-center items-center py-10">
         <div className="flex flex-col px-8 py-10 border-2 border-black dark:border-slate-300 rounded-lg w-[700px]">
-          <h1>Please answer some question so we can understand you</h1>
+          <h1>Please answer some question so we can understand you </h1>
           <Form {...form}>
             <form
               onSubmit={form.handleSubmit(onSubmit)}
