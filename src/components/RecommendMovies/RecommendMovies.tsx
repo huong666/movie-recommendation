@@ -179,6 +179,7 @@ export default function RecommendationMoviesCom() {
                 title={title}
                 img={item.image}
                 key={item.id}
+                id={item.id}
               />
             );
           })}

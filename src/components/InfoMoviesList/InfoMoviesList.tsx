@@ -20,7 +20,7 @@ export default function InfoMoviesList({
 }: {
   handleMovieList: (typeList: TypeList) => void;
 }) {
-  const [typeList, setTypeList] = useState<TypeList>("comingsoonmovies");
+  const [typeList, setTypeList] = useState<TypeList>("mostpopularmovies");
   const [infoMovies, setInfoMovies] = useState<any[]>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
 

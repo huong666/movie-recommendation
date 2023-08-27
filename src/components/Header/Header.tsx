@@ -56,9 +56,8 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed left-0 right-0 mx-auto flex flex-row justify-between py-5 2xl:px-56 xl:px-36 lg:px-12 px-4  transition-all duration-300 ease-linear ${
-        stickyMenu &&
-        "shadow-md shadow-slate-100 dark:shadow-slate-900 z-10 bg-white dark:bg-slate-900"
+      className={`fixed left-0 right-0 mx-auto flex flex-row justify-between py-5 2xl:px-56 xl:px-36 lg:px-12 px-4 shadow-md shadow-slate-100 dark:shadow-slate-900 bg-white dark:bg-slate-900 transition-all duration-300 ease-linear ${
+        stickyMenu && " z-10"
       }`}
     >
       <div className="xl:w-1/3 lg:w-1/4 w-1/2 flex flex-row justify-between items-center">

@@ -1,19 +1,19 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function RMCard({
   img,
   rating,
   title,
+  id,
 }: {
   img: string;
   rating: number;
   title: string;
+  id: string;
 }) {
   return (
-    <div
-      // href={`/info/${item.id}`}
-      className="opacity-90 hover:opacity-100"
-    >
+    <Link href={`/info/${id}`} className="opacity-90 hover:opacity-100">
       <Image
         priority
         src={img}
@@ -26,6 +26,6 @@ export default function RMCard({
         <p className="font-semibold">{rating}%</p>
         <p className="text-sm">{title}</p>
       </div>
-    </div>
+    </Link>
   );
 }

@@ -53,7 +53,6 @@ export async function handleGetdData(idMovie:string) {
         const data = fs.readFileSync('./data.json');
         const jsonData = JSON.parse(data);
         jsonData.push(topData)
-
         return topData
     } catch (error) {
        console.log("get data error: ", error)
