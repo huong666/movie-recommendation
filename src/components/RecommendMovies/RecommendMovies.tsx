@@ -41,7 +41,7 @@ const movieTypeInteface = ["Movie", "TvShows"] as const;
 const formSchema = z.object({
   movieGenre: z.enum(movieGenreInteface),
   movieType: z.enum(movieTypeInteface),
-  rating: z.number(),
+  rating: z.string().min(0.1, { message: "You need to type a score" }),
 });
 
 export default function RecommendationMoviesCom() {
@@ -52,7 +52,7 @@ export default function RecommendationMoviesCom() {
     defaultValues: {
       movieGenre: "Action",
       movieType: "Movie",
-      rating: 0,
+      rating: "0",
     },
   });
 
@@ -65,9 +65,7 @@ export default function RecommendationMoviesCom() {
   }
 
   const handleFilterData = (e: any) => {
-    if (
-      e.rating.star >= Number(userData?.rating != undefined && userData?.rating)
-    ) {
+    if (e.rating.star >= Number(userData?.rating)) {
       if (e.contentType == "Movie") {
         if (e.genre.includes(userData?.movieGenre)) {
           return e;
@@ -78,11 +76,11 @@ export default function RecommendationMoviesCom() {
   };
 
   const filterMovieData = moviesData.filter(handleFilterData);
-
+  //.filter(handleFilterData)
   return (
     <div>
       <div className="w-full flex flex-col justify-center items-center py-10">
-        <div className="flex flex-col px-8 py-10 border rounded-lg w-[700px]">
+        <div className="flex flex-col px-8 py-10 border-2 border-black dark:border-slate-300 rounded-lg w-[700px]">
           <h1>Please answer some question so we can understand you</h1>
           <Form {...form}>
             <form
@@ -153,7 +151,6 @@ export default function RecommendationMoviesCom() {
                       <FormLabel>Movie Score</FormLabel>
                       <FormControl>
                         <Input
-                          type="number"
                           placeholder="how many score do you want for the movie"
                           {...field}
                         />

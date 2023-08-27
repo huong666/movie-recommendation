@@ -4,8 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
-import { setCookie, getCookie, getCookies, deleteCookie } from "cookies-next";
-import { data } from "autoprefixer";
 
 export default function MovieCard({
   item,
@@ -45,14 +43,16 @@ export default function MovieCard({
         <Skeleton className="w-[180px] h-[280px]" />
       ) : (
         <Link href={`/info/${id}`} className="opacity-90 hover:opacity-100">
-          <Image
-            priority
-            src={img}
-            alt="Movie img"
-            width={180}
-            height={280}
-            className="rounded-md h-[280px] w-full mx-auto object-fill"
-          />
+          <div className="">
+            <Image
+              priority
+              src={img}
+              alt="Movie img"
+              width={180}
+              height={280}
+              className="rounded-md h-[240px] mx-auto object-fill"
+            />
+          </div>
           <div className="py-3 mx-auto">
             <p className="font-semibold">{rating}%</p>
             <p className="text-sm">{title}</p>

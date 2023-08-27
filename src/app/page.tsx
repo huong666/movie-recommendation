@@ -5,14 +5,12 @@ import {
   GetRecommendApi,
   GetTopRatedMoviesApi,
 } from "@/api/Movie";
-import { getMoviesSearchApi } from "@/api/NewApi/getMovieSearchApi";
 import {
   ComingSoonMovies,
   TopRatedMovies,
   MPTVShows,
   MPMovies,
 } from "@/components/Home";
-import dynamic from "next/dynamic";
 
 // const LazyComingSoonMovies = dynamic(
 //   () => import("@/components/Home/ComingSoonMovies")

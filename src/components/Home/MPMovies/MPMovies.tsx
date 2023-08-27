@@ -17,6 +17,7 @@ export default function MostPopularMovies({ moviesList }: { moviesList: any }) {
           options={{
             start: 0,
             width: "100%",
+            height: "100%",
             gap: "2rem",
             padding: "1rem",
             perPage: 6,
@@ -48,7 +49,7 @@ export default function MostPopularMovies({ moviesList }: { moviesList: any }) {
             // const percentRating = Math.round((rating.rating / 10) * 100);
             return (
               <SlideChild
-                className=" hover:bg-slate-200 dark:hover:bg-slate-900 rounded-md"
+                className=" hover:bg-slate-200 dark:hover:bg-slate-900 rounded-md h-full"
                 key={index}
               >
                 <MovieCard item={item} handleMovie={handleMovie} />

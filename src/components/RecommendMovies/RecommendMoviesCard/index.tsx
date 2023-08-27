@@ -20,7 +20,7 @@ export default function RMCard({
         alt="Movie img"
         width={180}
         height={280}
-        className="rounded-md h-[280px] w-full mx-auto object-fill"
+        className="rounded-md w-full mx-auto  object-fill h-[240px]"
       />
       <div className="py-3 mx-auto">
         <p className="font-semibold">{rating}%</p>
