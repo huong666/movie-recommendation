@@ -44,34 +44,33 @@ const movieGenreInteface = [
 const movieTypeInteface = ["Movie", "TvShows"] as const;
 
 const formSchema = z.object({
-  username: z.string().min(1, { message: "you have to type your name" }),
   movieGenre: z.enum(movieGenreInteface),
   movieType: z.enum(movieTypeInteface),
 });
 
 export default function ClientDemo() {
-  const [userData, setuserData] = useState();
+  const [userData, setUserData] = useState<z.infer<typeof formSchema>>();
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      username: "",
       movieGenre: "Action",
       movieType: "Movie",
     },
   });
 
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  function onSubmit(userValues: z.infer<typeof formSchema>) {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
-    console.log("data", values);
+    console.log("data", userValues);
+    setUserData(userValues);
   }
 
   const handleFilterData = (e: any) => {
-    if (e.rating.star > 0) {
+    if (e.rating.star >= 0) {
       if (e.contentType == "Movie") {
-        if (e.genre.includes("Drama")) {
+        if (e.genre.includes(userData?.movieGenre)) {
           return e;
         }
       }
@@ -89,31 +88,8 @@ export default function ClientDemo() {
           <Form {...form}>
             <form
               onSubmit={form.handleSubmit(onSubmit)}
-              // onSubmit={(e) => {
-              //   console.log("it run!!!!");
-              //   e.preventDefault();
-              //   return form.handleSubmit(onSubmit);
-              // }}
               className="space-y-8 mt-10"
             >
-              <FormField
-                control={form.control}
-                name="username"
-                render={({ field }) => {
-                  return (
-                    <FormItem>
-                      <FormLabel>Username</FormLabel>
-                      <FormControl>
-                        <Input placeholder="shadcn" {...field} />
-                      </FormControl>
-                      <FormDescription>
-                        This is your public display name.
-                      </FormDescription>
-                      <FormMessage />
-                    </FormItem>
-                  );
-                }}
-              />
               <FormField
                 control={form.control}
                 name="movieGenre"
@@ -174,23 +150,24 @@ export default function ClientDemo() {
           </Form>
         </div>
       </div>
-      <hr />
+      <hr className="my-10" />
       {/* render movies list */}
-      {/* <div className="grid xl:grid-cols-6 lg:grid-cols-5 sm:grid-cols-3 grid-cols-2 ss:grid-cols-1 gap-10">
-        {filterMovieData.map((item: any) => {
-          const rating = (item as any)?.rating.star * 10;
-          const title = (item as any)?.title;
+      <div className="grid xl:grid-cols-6 lg:grid-cols-5 sm:grid-cols-3 grid-cols-2 ss:grid-cols-1 gap-10">
+        {userData != undefined &&
+          filterMovieData.map((item: any) => {
+            const rating = (item as any)?.rating.star * 10;
+            const title = (item as any)?.title;
 
-          return (
-            <DemoCard
-              rating={rating}
-              title={title}
-              img={item.image}
-              key={item.id}
-            />
-          );
-        })}
-      </div> */}
+            return (
+              <DemoCard
+                rating={rating}
+                title={title}
+                img={item.image}
+                key={item.id}
+              />
+            );
+          })}
+      </div>
     </div>
   );
 }
