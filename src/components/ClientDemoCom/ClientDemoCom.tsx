@@ -44,6 +44,7 @@ const movieGenreInteface = [
 const movieTypeInteface = ["Movie", "TvShows"] as const;
 
 const formSchema = z.object({
+  username: z.string().min(1, { message: "you have to type your name" }),
   movieGenre: z.enum(movieGenreInteface),
   movieType: z.enum(movieTypeInteface),
 });
@@ -54,6 +55,7 @@ export default function ClientDemo() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
+      username: "",
       movieGenre: "Action",
       movieType: "Movie",
     },
@@ -88,8 +90,31 @@ export default function ClientDemo() {
           <Form {...form}>
             <form
               onSubmit={form.handleSubmit(onSubmit)}
+              // onSubmit={(e) => {
+              //   console.log("it run!!!!");
+              //   e.preventDefault();
+              //   return form.handleSubmit(onSubmit);
+              // }}
               className="space-y-8 mt-10"
             >
+              <FormField
+                control={form.control}
+                name="username"
+                render={({ field }) => {
+                  return (
+                    <FormItem>
+                      <FormLabel>Username</FormLabel>
+                      <FormControl>
+                        <Input placeholder="shadcn" {...field} />
+                      </FormControl>
+                      <FormDescription>
+                        This is your public display name.
+                      </FormDescription>
+                      <FormMessage />
+                    </FormItem>
+                  );
+                }}
+              />
               <FormField
                 control={form.control}
                 name="movieGenre"
@@ -150,7 +175,7 @@ export default function ClientDemo() {
           </Form>
         </div>
       </div>
-      <hr className="my-10" />
+      <hr />
       {/* render movies list */}
       <div className="grid xl:grid-cols-6 lg:grid-cols-5 sm:grid-cols-3 grid-cols-2 ss:grid-cols-1 gap-10">
         {userData != undefined &&
