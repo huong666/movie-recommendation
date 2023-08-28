@@ -216,7 +216,7 @@ export default function InfoMoviesList({
       <MoviesGrid infoMovies={infoMovies?.slice(0, loadmore)} />
       <div className="w-full flex justify-center mt-5">
         {infoMovies !== undefined && (
-          <Button onClick={handleLoadMore}>Loadmore</Button>
+          <Button onClick={handleLoadMore}>Load More</Button>
         )}
       </div>
     </section>

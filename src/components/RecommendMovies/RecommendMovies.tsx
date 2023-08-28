@@ -237,6 +237,7 @@ export default function RecommendationMoviesCom() {
           </Form>
         </div>
       </div>
+      <hr className="my-10 border-black w-full" />
       {randomMovie !== undefined && (
         <div className="md:h-[400px] w-full flex-col flex items-center rounded-xl">
           <div className="flex justify-between max-md:flex-col gap-10 mb-5">
@@ -301,7 +302,6 @@ export default function RecommendationMoviesCom() {
             </div>
           </div>
           <Button onClick={handleRandomMovie}>Click to change Movie</Button>
-          <hr className="my-10 border-black w-full" />
         </div>
       )}
       {/* render movies list */}
