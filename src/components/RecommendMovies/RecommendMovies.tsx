@@ -48,6 +48,7 @@ const formSchema = z.object({
 export default function RecommendationMoviesCom() {
   const [userData, setUserData] = useState<z.infer<typeof formSchema>>();
   const [isLoadinng, setIsLoadinng] = useState(false);
+
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -61,8 +62,6 @@ export default function RecommendationMoviesCom() {
 
   // 2. Define a submit handler.
   function onSubmit(userValues: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
     // console.log("data", userValues);
     setIsLoadinng(true);
     setUserData(userValues);
@@ -143,9 +142,7 @@ export default function RecommendationMoviesCom() {
                           <SelectContent>
                             <SelectGroup {...field}>
                               <SelectItem value="Movie">Movie</SelectItem>
-                              <SelectItem value="TVSeries">
-                                TvShows (not update yet)
-                              </SelectItem>
+                              <SelectItem value="TVSeries">TvShows</SelectItem>
                             </SelectGroup>
                           </SelectContent>
                         </Select>

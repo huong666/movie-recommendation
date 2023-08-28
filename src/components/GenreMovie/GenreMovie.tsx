@@ -26,11 +26,11 @@ export default function GenreMovie() {
   const [storeLocal, setStoreLocal] = useState<boolean>(false);
   const [typeList, setTypeList] = useState<TypeGenreList>("action");
 
-  async function handleGetRecommendMovies(idMovie: string) {
-    setInfoMovies(undefined);
-    const data = await handleRecommendMovies(idMovie);
-    setInfoMovies(data);
-  }
+  // async function handleGetRecommendMovies(idMovie: string) {
+  //   setInfoMovies(undefined);
+  //   const data = await handleRecommendMovies(idMovie);
+  //   setInfoMovies(data);
+  // }
 
   async function handleGetGenreMoviesData(typeList: TypeGenreList) {
     setInfoMovies(undefined);
