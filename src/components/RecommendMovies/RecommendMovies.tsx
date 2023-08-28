@@ -117,75 +117,6 @@ export default function RecommendationMoviesCom() {
   return (
     <div>
       <div className="w-full flex flex-col justify-center items-center py-10">
-        {randomMovie !== undefined && (
-          <div className="md:h-[400px] w-full flex-col flex items-center rounded-xl">
-            <div className="flex justify-between max-md:flex-col gap-10 mb-5">
-              {/* <RMCard
-                rating={randomMovie.rating.star * 10}
-                title={randomMovie.title}
-                date={
-                  randomMovie.releaseDetailed.month +
-                  "/" +
-                  randomMovie.releaseDetailed.day +
-                  "/" +
-                  randomMovie.releaseDetailed.year
-                }
-                img={randomMovie.image}
-                id={randomMovie.id}
-              /> */}
-              <div className="md:w-1/4 w-full">
-                <Image
-                  priority
-                  src={randomMovie.image}
-                  alt="Random Movie Image"
-                  width={180}
-                  height={280}
-                  className="rounded-md mx-auto h-[240px]"
-                />
-              </div>
-              <div className="md:w-3/4 w-full">
-                <p>
-                  <strong>Name: </strong>
-                  {randomMovie.title}
-                </p>
-                <p>
-                  <strong>Release Date: </strong>
-                  {randomMovie.releaseDetailed.month +
-                    "/" +
-                    randomMovie.releaseDetailed.day +
-                    "/" +
-                    randomMovie.releaseDetailed.year}
-                </p>
-                <p>
-                  <strong>User Score: </strong>
-                  {randomMovie.rating.star * 10}%
-                </p>
-                <p>
-                  <strong>Director: </strong>
-                  {randomMovie.directors.length == 0
-                    ? "Not Update Yet!"
-                    : randomMovie.directors.map(
-                        (item: string, index: number) => {
-                          return (
-                            <span key={index}>
-                              {index == randomMovie.directors.length - 1
-                                ? item
-                                : item + ", "}
-                            </span>
-                          );
-                        }
-                      )}
-                </p>
-                <p>
-                  <strong>Plot: </strong>
-                  {randomMovie.plot}
-                </p>
-              </div>
-            </div>
-            <Button onClick={handleRandomMovie}>Click to change Movie</Button>
-            <hr className="my-10 border-black w-full" />
-          </div>
-        )}
         <div className="flex flex-col px-8 py-10 border-2 border-black dark:border-slate-300 rounded-lg lg:w-[700px] w-full">
           <h1 className="text-xl font-medium">
             Please answer some question so we can understand you
@@ -306,6 +237,73 @@ export default function RecommendationMoviesCom() {
           </Form>
         </div>
       </div>
+      {randomMovie !== undefined && (
+        <div className="md:h-[400px] w-full flex-col flex items-center rounded-xl">
+          <div className="flex justify-between max-md:flex-col gap-10 mb-5">
+            {/* <RMCard
+                rating={randomMovie.rating.star * 10}
+                title={randomMovie.title}
+                date={
+                  randomMovie.releaseDetailed.month +
+                  "/" +
+                  randomMovie.releaseDetailed.day +
+                  "/" +
+                  randomMovie.releaseDetailed.year
+                }
+                img={randomMovie.image}
+                id={randomMovie.id}
+              /> */}
+            <div className="md:w-1/4 w-full">
+              <Image
+                priority
+                src={randomMovie.image}
+                alt="Random Movie Image"
+                width={180}
+                height={280}
+                className="rounded-md mx-auto h-[240px]"
+              />
+            </div>
+            <div className="md:w-3/4 w-full">
+              <p>
+                <strong>Name: </strong>
+                {randomMovie.title}
+              </p>
+              <p>
+                <strong>Release Date: </strong>
+                {randomMovie.releaseDetailed.month +
+                  "/" +
+                  randomMovie.releaseDetailed.day +
+                  "/" +
+                  randomMovie.releaseDetailed.year}
+              </p>
+              <p>
+                <strong>User Score: </strong>
+                {randomMovie.rating.star * 10}%
+              </p>
+              <p>
+                <strong>Director: </strong>
+                {randomMovie.directors.length == 0
+                  ? "Not Update Yet!"
+                  : randomMovie.directors.map((item: string, index: number) => {
+                      return (
+                        <span key={index}>
+                          {index == randomMovie.directors.length - 1
+                            ? item
+                            : item + ", "}
+                        </span>
+                      );
+                    })}
+              </p>
+              <p>
+                <strong>Plot: </strong>
+                {randomMovie.plot}
+              </p>
+            </div>
+          </div>
+          <Button onClick={handleRandomMovie}>Click to change Movie</Button>
+          <hr className="my-10 border-black w-full" />
+        </div>
+      )}
       {/* render movies list */}
       {/* <hr className="my-10" /> */}
       {/* {isLoading == true ? (

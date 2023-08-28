@@ -36,12 +36,7 @@ export default function MovieCard({
   const rating = movieData?.rating.star * 10;
   const title = movieData?.title;
   const img = movieData?.image;
-  const date =
-    movieData?.releaseDetailed.month +
-    "/" +
-    movieData?.releaseDetailed.day +
-    "/" +
-    movieData?.releaseDetailed.year;
+  const date = movieData?.releaseDetailed.year;
 
   return (
     <>

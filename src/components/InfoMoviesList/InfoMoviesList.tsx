@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import { AiOutlineCaretDown } from "react-icons/ai";
 import MoviesGrid from "../MoviesRender/MoviesGrid";
 import { handleGenreMoviesList, handleRecommendMovies } from "@/lib/serverFun";
+import { Button } from "../ui/button";
 
 type TypeList =
   | "comingsoonmovies"
@@ -27,6 +28,8 @@ type TypeGenreList =
   | "crime"
   | "romance";
 
+type typeRender = "typelist" | "typegenre";
+
 export default function InfoMoviesList({
   handleMovieList,
 }: {
@@ -35,7 +38,9 @@ export default function InfoMoviesList({
   const [typeList, setTypeList] = useState<TypeList>("mostpopulartvshows");
   const [typeGenreList, setTypeGenreList] = useState<TypeGenreList>("action");
   const [infoMovies, setInfoMovies] = useState<any[]>();
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  // const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [loadmore, setLoadmore] = useState<number>(18);
+  const [typeRender, setTypeRender] = useState<typeRender>();
 
   async function getMovieList(typeList: TypeList) {
     const data: any = await handleMovieList(typeList);
@@ -43,27 +48,45 @@ export default function InfoMoviesList({
   }
 
   async function handleGetGenreMoviesData(typeList: TypeGenreList) {
-    setInfoMovies(undefined);
-    const data = await handleGenreMoviesList(typeList);
+    const data: any = await handleGenreMoviesList(typeList);
     setInfoMovies(data);
   }
 
+  const handleLoadMore = () => {
+    setLoadmore((loadmore) => loadmore + 18);
+  };
+
   useEffect(() => {
-    setIsLoading(true);
+    // setIsLoading(true);
+    setTypeRender("typelist");
+    setLoadmore(18);
     setInfoMovies(undefined);
     getMovieList(typeList);
-    setIsLoading(false);
+    // setIsLoading(false);
   }, [typeList]);
+
+  useEffect(() => {
+    setTypeRender("typegenre");
+    setLoadmore(18);
+    setInfoMovies(undefined);
+    handleGetGenreMoviesData(typeGenreList);
+  }, [typeGenreList]);
+
+  useEffect(() => {
+    if (typeRender === "typelist") {
+      getMovieList(typeList);
+    } else {
+      handleGetGenreMoviesData(typeGenreList);
+    }
+  }, [loadmore]);
+
+  console.log("datamovieinfo", infoMovies);
 
   // async function handleGetRecommendMovies(idMovie: string) {
   //   setInfoMovies(undefined);
   //   const data = await handleRecommendMovies(idMovie);
   //   setInfoMovies(data);
   // }
-
-  useEffect(() => {
-    handleGetGenreMoviesData(typeGenreList);
-  }, [typeGenreList]);
 
   return (
     <section>
@@ -190,7 +213,12 @@ export default function InfoMoviesList({
         </Popover>
       </div>
       <hr className="my-5 border-black dark:border-white" />
-      <MoviesGrid isLoading={isLoading} infoMovies={infoMovies} />
+      <MoviesGrid infoMovies={infoMovies?.slice(0, loadmore)} />
+      <div className="w-full flex justify-center mt-5">
+        {infoMovies !== undefined && (
+          <Button onClick={handleLoadMore}>Loadmore</Button>
+        )}
+      </div>
     </section>
   );
 }

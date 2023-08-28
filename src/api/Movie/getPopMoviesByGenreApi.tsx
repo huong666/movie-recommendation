@@ -3,7 +3,7 @@ const rapidApiKey = env.X_RAPIDAPI_KEY;
 const rapidApiHost = env.X_RAPIDAPI_HOST;
 
 export async function GetPopMoviesByGenreApi(typeList: string) {
-  const url = `https://imdb8.p.rapidapi.com/title/v2/get-popular-movies-by-genre?genre=${typeList}&limit=18`;
+  const url = `https://imdb8.p.rapidapi.com/title/v2/get-popular-movies-by-genre?genre=${typeList}&limit=200`;
   const options = {
     method: "GET",
     headers: {

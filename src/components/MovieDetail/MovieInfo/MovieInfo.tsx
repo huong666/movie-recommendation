@@ -3,12 +3,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import Image from "next/image";
 
 export default function MovieInfo({ infoMovie }: { infoMovie: any }) {
-  const releaseDate =
-    infoMovie.releaseDetailed.day +
-    "/" +
-    infoMovie.releaseDetailed.month +
-    "/" +
-    infoMovie.releaseDetailed.year;
+  const releaseDate = infoMovie.releaseDetailed.year;
   return (
     <section className="py-5">
       <div className="">
