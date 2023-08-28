@@ -148,7 +148,7 @@ export default function RecommendationMoviesCom() {
                 render={({ field }) => {
                   return (
                     <FormItem>
-                      <FormLabel>Movie Score</FormLabel>
+                      <FormLabel>Movie score need to higher than</FormLabel>
                       <FormControl>
                         <Input
                           placeholder="how many score do you want for the movie"
