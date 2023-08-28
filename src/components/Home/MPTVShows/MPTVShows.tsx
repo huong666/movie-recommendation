@@ -27,9 +27,6 @@ export default function MPTVShowsApi({ moviesList }: { moviesList: any }) {
               1700: {
                 perPage: 9,
               },
-              1600: {
-                perPage: 7,
-              },
               1440: {
                 perPage: 6,
               },

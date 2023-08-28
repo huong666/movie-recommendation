@@ -17,7 +17,6 @@ export default function MostPopularMovies({ moviesList }: { moviesList: any }) {
           options={{
             start: 0,
             width: "100%",
-            height: "100%",
             gap: "2rem",
             padding: "1rem",
             perPage: 6,
@@ -26,9 +25,6 @@ export default function MostPopularMovies({ moviesList }: { moviesList: any }) {
             breakpoints: {
               1700: {
                 perPage: 9,
-              },
-              1600: {
-                perPage: 7,
               },
               1440: {
                 perPage: 6,

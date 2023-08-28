@@ -56,7 +56,7 @@ export default function MovieCard({
               alt="Movie img"
               width={180}
               height={280}
-              className="rounded-md h-[240px] mx-auto object-fill"
+              className="rounded-md h-[240px] mx-auto"
             />
           </div>
           <div className="py-3 mx-auto">

@@ -36,10 +36,18 @@ const movieGenreInteface = [
 
 const movieTypeInteface = ["Movie", "TvShows"] as const;
 
+const yearOldReleasted = [
+  "does'tmatter",
+  "3",
+  "5",
+  "10",
+] as const;
+
 const formSchema = z.object({
   movieGenre: z.enum(movieGenreInteface),
   movieType: z.enum(movieTypeInteface),
   rating: z.string(),
+  movieYear: z.enum(yearOldReleasted),
 });
 
 export default function RecommendationMoviesCom() {
@@ -51,22 +59,31 @@ export default function RecommendationMoviesCom() {
       movieGenre: "Action",
       movieType: "Movie",
       rating: "0",
+      movieYear: "does'tmatter"
     },
   });
 
   // 2. Define a submit handler.
   function onSubmit(userValues: z.infer<typeof formSchema>) {
+    setUserData(undefined)
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
-    console.log("data", userValues);
-    setUserData(userValues);
+    // console.log("data", userValues);
+    if(userData == undefined){
+      setUserData(userValues);
+    }
   }
 
   const handleFilterData = (e: any) => {
     if (e.rating.star >= Number(userData?.rating) / 10) {
       if (e.contentType == "Movie") {
         if (e.genre.includes(userData?.movieGenre)) {
-          return e;
+          if(userData?.movieYear === 'does\'tmatter'){
+            return e;
+          }
+          else if(e.releaseDetailed.year < 2023 - Number(userData?.movieYear)) {
+            return e;
+          }
         }
       }
     }
@@ -142,6 +159,36 @@ export default function RecommendationMoviesCom() {
               />
               <FormField
                 control={form.control}
+                name="movieYear"
+                render={({ field }) => {
+                  return (
+                    <FormItem>
+                      <FormLabel>
+                        How old would you like the movie to be?
+                      </FormLabel>
+                      <FormControl>
+                        <Select onValueChange={field.onChange}>
+                          <SelectTrigger>
+                            <SelectValue placeholder="Select a type" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectGroup {...field}>
+                              <SelectItem value="does'tmatter">
+                                Doesn't matter
+                              </SelectItem>
+                              <SelectItem value="3">3 years</SelectItem>
+                              <SelectItem value="5">5 years</SelectItem>
+                              <SelectItem value="10">10 years</SelectItem>
+                            </SelectGroup>
+                          </SelectContent>
+                        </Select>
+                      </FormControl>
+                    </FormItem>
+                  );
+                }}
+              />
+              <FormField
+                control={form.control}
                 name="rating"
                 render={({ field }) => {
                   return (
@@ -165,9 +212,9 @@ export default function RecommendationMoviesCom() {
       </div>
       <hr className="my-10" />
       {/* render movies list */}
-      <div className="grid 4xl:grid-cols-9 xl:grid-cols-6 lg:grid-cols-5 sm:grid-cols-3 grid-cols-2 ss:grid-cols-1 gap-10">
-        {userData != undefined &&
-          filterMovieData.map((item: any) => {
+      {userData == undefined ? "You are not choose option or the movies are loading" : 
+     (<div className="grid 4xl:grid-cols-9 xl:grid-cols-6 lg:grid-cols-5 sm:grid-cols-3 grid-cols-2 ss:grid-cols-1 gap-10">
+      {filterMovieData.map((item: any) => {
             const rating = item.rating.star * 10;
             const title = item.title;
             const date =
@@ -187,8 +234,9 @@ export default function RecommendationMoviesCom() {
                 date={date}
               />
             );
-          })}
-      </div>
+          })
+        }
+      </div>)}
     </div>
   );
 }
