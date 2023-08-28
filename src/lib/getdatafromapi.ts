@@ -32,7 +32,7 @@ export async function handleGetdApi() {
     try {
         console.log("it run!!!")
         const topRatedData = await GetMostPopTvShowApi()
-        // fs.writeFile('./src/data/mostPopTvShows.json', JSON.stringify(topRatedData), (err:any) => {
+        // fs.writeFile('./src/data/tvShowData.json', JSON.stringify(topRatedData), (err:any) => {
         //     if (err) {
         //         throw new Error('Something went wrong.')
         //     }

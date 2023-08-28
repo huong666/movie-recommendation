@@ -27,20 +27,20 @@ type TypeGenreList =
 export async function handleMovie(params: any) {
   
     const id = params.slice(7, params.length - 1);
-    const fs = require("fs");
+    // const fs = require("fs");
     
     try {
       const res = await getInfoMovie(id);
 
     // store New data in data.json
-  //   const data = fs.readFileSync('./src/data/data.json');
-  //   const jsonData = JSON.parse(data);
-  //   jsonData.movies = [...jsonData.movies, res]
-  //   const jsonString = JSON.stringify(jsonData);
-  //   fs.writeFileSync('./src/data/data.json', jsonString, 'utf-8', (err:any) => {
-  //   if (err) throw err; 
-  //   console.log('Data added to file');
-  // });
+    // const data = fs.readFileSync('./src/data/tvShowData.json');
+    // const jsonData = JSON.parse(data);
+    // jsonData.movies = [...jsonData.movies, res]
+    // const jsonString = JSON.stringify(jsonData);
+    // fs.writeFileSync('./src/data/tvShowData.json', jsonString, 'utf-8', (err:any) => {
+    // if (err) throw err; 
+    // console.log('Data added to file');
+    // });
 
       return res;
     } catch (error) {
@@ -60,7 +60,7 @@ export async function handleSearchMovies(params: string) {
     }
   }
 
-export async function handleMovieList(typeList : TypeList){
+export async function handleMovieList(typeList: TypeList){
   try {
     const moviesList =
       typeList == "comingsoonmovies"
@@ -76,7 +76,7 @@ export async function handleMovieList(typeList : TypeList){
   }
 }
 
-export async function handleGenreMoviesList(TypeGenreList:TypeGenreList) {
+export async function handleGenreMoviesList(TypeGenreList: TypeGenreList) {
   try {
     const moviesList = await GetPopMoviesByGenreApi(TypeGenreList)
     return moviesList

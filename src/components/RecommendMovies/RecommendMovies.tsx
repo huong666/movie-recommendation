@@ -34,14 +34,9 @@ const movieGenreInteface = [
   "Animation",
 ] as const;
 
-const movieTypeInteface = ["Movie", "TvShows"] as const;
+const movieTypeInteface = ["Movie", "TVSeries"] as const;
 
-const yearOldReleasted = [
-  "does'tmatter",
-  "3",
-  "5",
-  "10",
-] as const;
+const yearOldReleasted = ["does'tmatter", "3", "5", "10"] as const;
 
 const formSchema = z.object({
   movieGenre: z.enum(movieGenreInteface),
@@ -52,6 +47,7 @@ const formSchema = z.object({
 
 export default function RecommendationMoviesCom() {
   const [userData, setUserData] = useState<z.infer<typeof formSchema>>();
+  const [isLoadinng, setIsLoadinng] = useState(false);
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -59,29 +55,30 @@ export default function RecommendationMoviesCom() {
       movieGenre: "Action",
       movieType: "Movie",
       rating: "0",
-      movieYear: "does'tmatter"
+      movieYear: "does'tmatter",
     },
   });
 
   // 2. Define a submit handler.
   function onSubmit(userValues: z.infer<typeof formSchema>) {
-    setUserData(undefined)
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
     // console.log("data", userValues);
-    if(userData == undefined){
-      setUserData(userValues);
-    }
+    setIsLoadinng(true);
+    setUserData(userValues);
+    setIsLoadinng(false);
   }
 
   const handleFilterData = (e: any) => {
     if (e.rating.star >= Number(userData?.rating) / 10) {
-      if (e.contentType == "Movie") {
+      if (e.contentType == userData?.movieType) {
         if (e.genre.includes(userData?.movieGenre)) {
-          if(userData?.movieYear === 'does\'tmatter'){
+          if (userData?.movieYear === "does'tmatter") {
             return e;
-          }
-          else if(e.releaseDetailed.year < 2023 - Number(userData?.movieYear)) {
+          } else if (
+            e.releaseDetailed.year <
+            2023 - Number(userData?.movieYear)
+          ) {
             return e;
           }
         }
@@ -96,7 +93,7 @@ export default function RecommendationMoviesCom() {
     <div>
       <div className="w-full flex flex-col justify-center items-center py-10">
         <div className="flex flex-col px-8 py-10 border-2 border-black dark:border-slate-300 rounded-lg w-[700px]">
-          <h1>Please answer some question so we can understand you </h1>
+          <h1>Please answer some question so we can understand you</h1>
           <Form {...form}>
             <form
               onSubmit={form.handleSubmit(onSubmit)}
@@ -146,7 +143,7 @@ export default function RecommendationMoviesCom() {
                           <SelectContent>
                             <SelectGroup {...field}>
                               <SelectItem value="Movie">Movie</SelectItem>
-                              <SelectItem value="TvShows">
+                              <SelectItem value="TVSeries">
                                 TvShows (not update yet)
                               </SelectItem>
                             </SelectGroup>
@@ -212,9 +209,11 @@ export default function RecommendationMoviesCom() {
       </div>
       <hr className="my-10" />
       {/* render movies list */}
-      {userData == undefined ? "You are not choose option or the movies are loading" : 
-     (<div className="grid 4xl:grid-cols-9 xl:grid-cols-6 lg:grid-cols-5 sm:grid-cols-3 grid-cols-2 ss:grid-cols-1 gap-10">
-      {filterMovieData.map((item: any) => {
+      {isLoadinng == true ? (
+        "You are not choose option or the movies are loading"
+      ) : (
+        <div className="grid 4xl:grid-cols-9 xl:grid-cols-6 lg:grid-cols-5 sm:grid-cols-3 grid-cols-2 ss:grid-cols-1 gap-10">
+          {filterMovieData.map((item: any) => {
             const rating = item.rating.star * 10;
             const title = item.title;
             const date =
@@ -234,9 +233,9 @@ export default function RecommendationMoviesCom() {
                 date={date}
               />
             );
-          })
-        }
-      </div>)}
+          })}
+        </div>
+      )}
     </div>
   );
 }
