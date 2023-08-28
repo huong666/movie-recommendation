@@ -177,11 +177,13 @@ export default function RecommendationMoviesCom() {
           </div>
         )}
         <div className="flex flex-col px-8 py-10 border-2 border-black dark:border-slate-300 rounded-lg lg:w-[700px] w-full">
-          <h1>Please answer some question so we can understand you</h1>
+          <h1 className="text-xl font-medium">
+            Please answer some question so we can understand you
+          </h1>
           <Form {...form}>
             <form
               onSubmit={form.handleSubmit(onSubmit)}
-              className="space-y-8 mt-10"
+              className="space-y-8 mt-10 flex flex-col"
             >
               <FormField
                 control={form.control}
@@ -284,7 +286,9 @@ export default function RecommendationMoviesCom() {
                   );
                 }}
               />
-              <Button type="submit">Submit</Button>
+              <Button type="submit" className="self-end">
+                Submit
+              </Button>
             </form>
           </Form>
         </div>

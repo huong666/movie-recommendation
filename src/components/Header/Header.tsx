@@ -12,7 +12,6 @@ export default function Header() {
   const [stickyMenu, setstickyMenu] = useState<boolean | null>(null);
   const [mode, setMode] = useState<string>("light");
   const [y, setY] = useState<number>(0);
-  const [navigationOpen, setnavigationOpen] = useState<boolean>(false);
   const [onSubmit, setOnSubmit] = useState<string>("");
 
   const onMode = () => {
@@ -23,10 +22,6 @@ export default function Header() {
   const handleNavigation = useCallback(() => {
     setY(window.scrollY);
   }, [y]);
-
-  const handleNavigationOpen = () => {
-    setnavigationOpen(!navigationOpen);
-  };
 
   useEffect(() => {
     window.addEventListener("scroll", handleNavigation);
@@ -56,8 +51,8 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed left-0 right-0 mx-auto flex flex-row justify-between py-5 2xl:px-56 xl:px-36 lg:px-12 px-4 shadow-md shadow-slate-100 dark:shadow-slate-900 bg-white dark:bg-slate-900 transition-all duration-300 ease-linear ${
-        stickyMenu && " z-10"
+      className={`fixed left-0 right-0 mx-auto flex flex-row justify-between py-6 2xl:px-56 xl:px-36 lg:px-12 px-4 z-10 bg-white dark:bg-slate-900 transition-all duration-300 ease-linear ${
+        stickyMenu && "py-4 shadow-md shadow-slate-100 dark:shadow-slate-900"
       }`}
     >
       <div className="xl:w-1/3 lg:w-1/4 w-1/2 flex flex-row justify-between items-center">
