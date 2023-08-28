@@ -86,8 +86,14 @@ export default function RecommendationMoviesCom() {
     return;
   };
 
-  const filterMovieData = moviesData.filter(handleFilterData);
-  //.filter(handleFilterData)
+  const handleSortYear = (a: any, b: any) => {
+    return b.rating.star - a.rating.star;
+  };
+
+  const filterMovieData = moviesData
+    .sort(handleSortYear)
+    .filter(handleFilterData);
+
   return (
     <div>
       <div className="w-full flex flex-col justify-center items-center py-10">
