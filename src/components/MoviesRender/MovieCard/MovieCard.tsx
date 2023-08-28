@@ -55,7 +55,7 @@ export default function MovieCard({
               src={img}
               alt="Movie img"
               width={180}
-              height={280}
+              height={240}
               className="rounded-md h-[240px] mx-auto"
             />
           </div>

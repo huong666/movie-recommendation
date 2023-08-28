@@ -230,10 +230,10 @@ export default function RecommendationMoviesCom() {
               <RMCard
                 rating={rating}
                 title={title}
+                date={date}
                 img={item.image}
                 key={item.id}
                 id={item.id}
-                date={date}
               />
             );
           })}
