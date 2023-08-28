@@ -33,17 +33,24 @@ const movieGenreInteface = [
   "Horror",
   "Drama",
   "Animation",
+  "none",
 ] as const;
 
-const movieTypeInteface = ["Movie", "TVSeries"] as const;
+const movieTypeInteface = ["Movie", "TVSeries", "none"] as const;
 
-const yearOldReleasted = ["does'tmatter", "3", "5", "10"] as const;
+const yearOldReleasted = ["does'tmatter", "3", "5", "10", "none"] as const;
 
 const formSchema = z.object({
-  movieGenre: z.enum(movieGenreInteface),
-  movieType: z.enum(movieTypeInteface),
+  movieGenre: z.enum(movieGenreInteface).refine((val) => val !== "none", {
+    message: "You need to choose the value",
+  }),
+  movieType: z.enum(movieTypeInteface).refine((val) => val !== "none", {
+    message: "You need to choose the value",
+  }),
   rating: z.string(),
-  movieYear: z.enum(yearOldReleasted),
+  movieYear: z.enum(yearOldReleasted).refine((val) => val !== "none", {
+    message: "You need to choose the value",
+  }),
 });
 
 export default function RecommendationMoviesCom() {
@@ -55,12 +62,16 @@ export default function RecommendationMoviesCom() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      movieGenre: "Action",
-      movieType: "Movie",
+      movieGenre: "none",
+      movieType: "none",
       rating: "0",
-      movieYear: "does'tmatter",
+      movieYear: "none",
     },
   });
+
+  useEffect(() => {
+    handleRandomMovie();
+  }, [userData]);
 
   // 2. Define a submit handler.
   function onSubmit(userValues: z.infer<typeof formSchema>) {
@@ -68,7 +79,6 @@ export default function RecommendationMoviesCom() {
     // setIsLoading(true);
     setUserData(userValues);
     // setIsLoading(false);
-    handleRandomMovie();
   }
 
   const handleFilterData = (e: any) => {
@@ -100,7 +110,7 @@ export default function RecommendationMoviesCom() {
   const handleRandomMovie = () => {
     const randomData = Math.floor(Math.random() * filterMovieData.length);
     const rdMovie = filterMovieData[randomData];
-    console.log("rdMovie", rdMovie);
+    // console.log("rdMovie", rdMovie);
     setRandomMovie(rdMovie);
   };
 
@@ -210,6 +220,7 @@ export default function RecommendationMoviesCom() {
                           </SelectContent>
                         </Select>
                       </FormControl>
+                      <FormMessage />
                     </FormItem>
                   );
                 }}
@@ -234,6 +245,7 @@ export default function RecommendationMoviesCom() {
                           </SelectContent>
                         </Select>
                       </FormControl>
+                      <FormMessage />
                     </FormItem>
                   );
                 }}
@@ -264,6 +276,7 @@ export default function RecommendationMoviesCom() {
                           </SelectContent>
                         </Select>
                       </FormControl>
+                      <FormMessage />
                     </FormItem>
                   );
                 }}
