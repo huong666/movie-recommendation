@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -23,6 +23,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import RMCard from "./RecommendMoviesCard";
+import Image from "next/image";
 
 const moviesData = require("@/data/data.json").movies;
 
@@ -47,7 +48,8 @@ const formSchema = z.object({
 
 export default function RecommendationMoviesCom() {
   const [userData, setUserData] = useState<z.infer<typeof formSchema>>();
-  const [isLoadinng, setIsLoadinng] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [randomMovie, setRandomMovie] = useState<any>();
 
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
@@ -63,9 +65,10 @@ export default function RecommendationMoviesCom() {
   // 2. Define a submit handler.
   function onSubmit(userValues: z.infer<typeof formSchema>) {
     // console.log("data", userValues);
-    setIsLoadinng(true);
+    // setIsLoading(true);
     setUserData(userValues);
-    setIsLoadinng(false);
+    // setIsLoading(false);
+    handleRandomMovie();
   }
 
   const handleFilterData = (e: any) => {
@@ -94,10 +97,86 @@ export default function RecommendationMoviesCom() {
     .sort(handleSortYear)
     .filter(handleFilterData);
 
+  const handleRandomMovie = () => {
+    const randomData = Math.floor(Math.random() * filterMovieData.length);
+    const rdMovie = filterMovieData[randomData];
+    console.log("rdMovie", rdMovie);
+    setRandomMovie(rdMovie);
+  };
+
   return (
     <div>
       <div className="w-full flex flex-col justify-center items-center py-10">
-        <div className="flex flex-col px-8 py-10 border-2 border-black dark:border-slate-300 rounded-lg w-[700px]">
+        {randomMovie !== undefined && (
+          <div className="md:h-[400px] w-full flex-col flex items-center rounded-xl">
+            <div className="flex justify-between max-md:flex-col gap-10 mb-5">
+              {/* <RMCard
+                rating={randomMovie.rating.star * 10}
+                title={randomMovie.title}
+                date={
+                  randomMovie.releaseDetailed.month +
+                  "/" +
+                  randomMovie.releaseDetailed.day +
+                  "/" +
+                  randomMovie.releaseDetailed.year
+                }
+                img={randomMovie.image}
+                id={randomMovie.id}
+              /> */}
+              <div className="md:w-1/4 w-full">
+                <Image
+                  priority
+                  src={randomMovie.image}
+                  alt="Random Movie Image"
+                  width={180}
+                  height={280}
+                  className="rounded-md mx-auto h-[240px]"
+                />
+              </div>
+              <div className="md:w-3/4 w-full">
+                <p>
+                  <strong>Name: </strong>
+                  {randomMovie.title}
+                </p>
+                <p>
+                  <strong>Release Date: </strong>
+                  {randomMovie.releaseDetailed.month +
+                    "/" +
+                    randomMovie.releaseDetailed.day +
+                    "/" +
+                    randomMovie.releaseDetailed.year}
+                </p>
+                <p>
+                  <strong>User Score: </strong>
+                  {randomMovie.rating.star * 10}%
+                </p>
+                <p>
+                  <strong>Director: </strong>
+                  {randomMovie.directors.length == 0
+                    ? "Not Update Yet!"
+                    : randomMovie.directors.map(
+                        (item: string, index: number) => {
+                          return (
+                            <span key={index}>
+                              {index == randomMovie.directors.length - 1
+                                ? item
+                                : item + ", "}
+                            </span>
+                          );
+                        }
+                      )}
+                </p>
+                <p>
+                  <strong>Plot: </strong>
+                  {randomMovie.plot}
+                </p>
+              </div>
+            </div>
+            <Button onClick={handleRandomMovie}>Click to change Movie</Button>
+            <hr className="my-10 border-black w-full" />
+          </div>
+        )}
+        <div className="flex flex-col px-8 py-10 border-2 border-black dark:border-slate-300 rounded-lg lg:w-[700px] w-full">
           <h1>Please answer some question so we can understand you</h1>
           <Form {...form}>
             <form
@@ -210,9 +289,9 @@ export default function RecommendationMoviesCom() {
           </Form>
         </div>
       </div>
-      <hr className="my-10" />
       {/* render movies list */}
-      {isLoadinng == true ? (
+      {/* <hr className="my-10" /> */}
+      {/* {isLoading == true ? (
         "You are not choose option or the movies are loading"
       ) : (
         <div className="grid 4xl:grid-cols-9 xl:grid-cols-6 lg:grid-cols-5 sm:grid-cols-3 grid-cols-2 ss:grid-cols-1 gap-10">
@@ -238,7 +317,7 @@ export default function RecommendationMoviesCom() {
             );
           })}
         </div>
-      )}
+      )} */}
     </div>
   );
 }
