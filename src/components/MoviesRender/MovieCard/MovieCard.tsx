@@ -14,7 +14,7 @@ export default function MovieCard({
 }) {
   // const data = handleMovie(item);
   // console.log("data from handleMovie", data);
-  const [movieData, setMovieData] = useState();
+  const [movieData, setMovieData] = useState<any>();
 
   async function handleMovieApi() {
     const data: any = await handleMovie(item);
@@ -32,10 +32,16 @@ export default function MovieCard({
     }, 18000000);
   }, []);
 
-  const id = (movieData as any)?.id;
-  const rating = (movieData as any)?.rating.star * 10;
-  const title = (movieData as any)?.title;
-  const img = (movieData as any)?.image;
+  const id = movieData?.id;
+  const rating = movieData?.rating.star * 10;
+  const title = movieData?.title;
+  const img = movieData?.image;
+  const date =
+    movieData?.releaseDetailed.month +
+    "/" +
+    movieData?.releaseDetailed.day +
+    "/" +
+    movieData?.releaseDetailed.year;
 
   return (
     <>
@@ -54,7 +60,10 @@ export default function MovieCard({
             />
           </div>
           <div className="py-3 mx-auto">
-            <p className="font-semibold">{rating}%</p>
+            <p className="font-semibold flex justify-between items-center">
+              <span>{rating}%</span>
+              <span>{date}</span>
+            </p>
             <p className="text-sm">{title}</p>
           </div>
         </Link>

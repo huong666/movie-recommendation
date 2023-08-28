@@ -19,6 +19,16 @@ export default async function RootLayout({
   return (
     <html lang="en" className="">
       <body className={`${inter.className}`}>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+    if (localStorage?.getItem("Dark Mode") == "dark") {
+      document.getElementsByTagName("html")[0].classList.add("dark", "bg-black");
+    } else {
+      document.getElementsByTagName("html")[0].classList.remove("dark", "bg-black");
+    } `,
+          }}
+        ></script>
         <Header />
         {children}
         <Footer />

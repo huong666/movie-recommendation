@@ -8,7 +8,6 @@ import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -20,7 +19,6 @@ import {
   SelectContent,
   SelectGroup,
   SelectItem,
-  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
@@ -41,7 +39,7 @@ const movieTypeInteface = ["Movie", "TvShows"] as const;
 const formSchema = z.object({
   movieGenre: z.enum(movieGenreInteface),
   movieType: z.enum(movieTypeInteface),
-  rating: z.string().min(0.1, { message: "You need to type a score" }),
+  rating: z.string(),
 });
 
 export default function RecommendationMoviesCom() {
@@ -65,7 +63,7 @@ export default function RecommendationMoviesCom() {
   }
 
   const handleFilterData = (e: any) => {
-    if (e.rating.star >= Number(userData?.rating)) {
+    if (e.rating.star >= Number(userData?.rating) / 10) {
       if (e.contentType == "Movie") {
         if (e.genre.includes(userData?.movieGenre)) {
           return e;
@@ -167,11 +165,17 @@ export default function RecommendationMoviesCom() {
       </div>
       <hr className="my-10" />
       {/* render movies list */}
-      <div className="grid xl:grid-cols-6 lg:grid-cols-5 sm:grid-cols-3 grid-cols-2 ss:grid-cols-1 gap-10">
+      <div className="grid 4xl:grid-cols-9 xl:grid-cols-6 lg:grid-cols-5 sm:grid-cols-3 grid-cols-2 ss:grid-cols-1 gap-10">
         {userData != undefined &&
           filterMovieData.map((item: any) => {
-            const rating = (item as any)?.rating.star * 10;
-            const title = (item as any)?.title;
+            const rating = item.rating.star * 10;
+            const title = item.title;
+            const date =
+              item.releaseDetailed.month +
+              "/" +
+              item.releaseDetailed.day +
+              "/" +
+              item.releaseDetailed.year;
 
             return (
               <RMCard
@@ -180,6 +184,7 @@ export default function RecommendationMoviesCom() {
                 img={item.image}
                 key={item.id}
                 id={item.id}
+                date={date}
               />
             );
           })}

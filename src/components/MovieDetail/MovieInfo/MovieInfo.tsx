@@ -33,13 +33,15 @@ export default function MovieInfo({ infoMovie }: { infoMovie: any }) {
                     {item == undefined ? (
                       <Skeleton className="w-[250px] h-[170px]" />
                     ) : (
-                      <Image
-                        src={item}
-                        alt=""
-                        width={250}
-                        height={170}
-                        className="h-full rounded-md object-cover"
-                      />
+                      <div className="h-[170px]">
+                        <Image
+                          src={item}
+                          alt=""
+                          width={250}
+                          height={170}
+                          className="h-full rounded-md object-contain"
+                        />
+                      </div>
                     )}
                   </SlideChild>
                 );

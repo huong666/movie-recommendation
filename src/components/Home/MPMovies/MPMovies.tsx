@@ -25,6 +25,9 @@ export default function MostPopularMovies({ moviesList }: { moviesList: any }) {
             mediaQuery: "min",
             breakpoints: {
               1700: {
+                perPage: 9,
+              },
+              1600: {
                 perPage: 7,
               },
               1440: {
