@@ -38,8 +38,13 @@
     "html-entities": "^2.4.0",
     "ioredis": "^5.3.2",
     "lucide-react": "^0.263.1",
+<<<<<<< HEAD
+    "next": "13.5.0",
+    "postcss": "8.4.27",
+=======
     "next": "13.4.12",
     "postcss": "8.4.31",
+>>>>>>> main
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.45.4",
